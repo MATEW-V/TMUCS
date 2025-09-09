@@ -38,3 +38,8 @@ n = int(input())
 gRatio = ((5)**0.5+1)/2
 fibbie = round(((2+gRatio)/5)*gRatio**(n)+((3-gRatio)/5)*gRatio**(-n)) #n minus 1 solved inaccuracy ??? idk ts buggy af
 print("the 'n'th number of the fibonacci sequence is: "+str(fibbie))
+n=0
+for i in range(11):
+    n+=1
+    fibbie = round(((2+gRatio)/5)*gRatio**(n)+((3-gRatio)/5)*gRatio**(-n)) #10 print
+    print(fibbie)
