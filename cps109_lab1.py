@@ -35,5 +35,6 @@ print("the area of your pentagon is: "+str(round((area),2)))
 #Question 5
 print("Give me a number for the fibonacci sequence: ")
 n = int(input())
-fibbie = 1
-gRatio = 2
+gRatio = ((5)**0.5+1)/2
+fibbie = round(((2+gRatio)/5)*gRatio**(n)+((3-gRatio)/5)*gRatio**(-n)) #n minus 1 solved inaccuracy ??? idk ts buggy af
+print("the 'n'th number of the fibonacci sequence is: "+str(fibbie))
