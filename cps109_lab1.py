@@ -5,7 +5,7 @@ print("Input a value in Celsius to convert into Fahrenheit: ")
 try:
     cels = int(input())
 except Exception as e:
-    print("pleas enter an integer. Restart the code. (idont wanna code the rest)")
+    print("pls enter an integer. Restart the code. (idont wanna code the rest)")
 else: 
     x = round(((int)(cels)*(9/5)+32),2)
     print("Converted Fahrenheit: "+str(x))
@@ -15,7 +15,7 @@ print("Input three polynomial values separated by a space: ")
 try:
     x, y, z = map(float, input().split())
 except Exception as e:
-    print("pleas enter a float. Restart the code. (idont wanna code the rest)")
+    print("float only. Restart the code.")
 else:   
     root = format(((-y+(y**2-4*x*z)**0.5)/(2*x)),'.2f')
     root2 = format(((-y-(y**2-4*x*z)**0.5)/(2*x)),'.2f')
@@ -26,7 +26,7 @@ print("Input the sides of a triangle separated by a space: ")
 try:
     a, b, c = map(int, input().split())
 except Exception as e:
-    print("pleas enter an integer. Restart the code. (idont wanna code the rest)")
+    print(" int. Restart the code.")
 else: 
     print(a<=(b+c) and b<=(a+c) and c<=(a+b))
 
@@ -35,7 +35,7 @@ print("Enter a side length for a pentagon: ")
 try:
     s = float(input())
 except Exception as e:
-    print("pleas enter an float. Restart the code.")
+    print("float. Restart the code.")
 else: area = (1/4)*((5*(5+2*(5)**0.5))**0.5)*s**2
 print("the area of your pentagon is: "+str(round((area),2)))
 
@@ -44,7 +44,7 @@ print("Give me a number for the fibonacci sequence: ")
 try:
     n = int(input())
 except Exception as e:
-    print("cmon now")
+    print("ints pls")
 else: 
     gRatio = ((5)**0.5+1)/2
     fibbie = round(((2+gRatio)/5)*gRatio**(n)+((3-gRatio)/5)*gRatio**(-n))
