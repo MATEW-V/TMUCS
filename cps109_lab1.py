@@ -16,3 +16,9 @@ root2 = format(((-y-(y**2-4*x*z)**0.5)/2*x),'.2f')
 print("the roots are: "+str(root)+" "+str(root2))
 
 #Question three
+print("Input the first value: ")
+a = int(input())
+print("Input the second value: ")
+b = int(input())
+print("Input the third value: ")
+c = int(input())
