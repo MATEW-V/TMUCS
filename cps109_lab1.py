@@ -1,4 +1,6 @@
 #Assumed floats for most bc measurements / exact polynomials, took int as celsius
+#written by matthew vuong
+#student num 501348434
 
 #Question one
 print("Input a value in Celsius to convert into Fahrenheit: ")
@@ -39,7 +41,8 @@ gRatio = ((5)**0.5+1)/2
 fibbie = round(((2+gRatio)/5)*gRatio**(n)+((3-gRatio)/5)*gRatio**(-n)) #n minus 1 solved inaccuracy ??? idk ts buggy af
 print("the 'n'th number of the fibonacci sequence is: "+str(fibbie))
 n=0
-for i in range(11):
+print("Here is the first 10 numbers of the given formula \nThe inaccurate fibbie sequence: ")
+for i in range(10):
     n+=1
     fibbie = round(((2+gRatio)/5)*gRatio**(n)+((3-gRatio)/5)*gRatio**(-n)) #10 print
     print(fibbie)
