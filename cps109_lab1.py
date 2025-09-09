@@ -36,8 +36,9 @@ try:
     s = float(input())
 except Exception as e:
     print("float. Restart the code.")
-else: area = (1/4)*((5*(5+2*(5)**0.5))**0.5)*s**2
-print("the area of your pentagon is: "+str(round((area),2)))
+else: 
+    area = (1/4)*((5*(5+2*(5)**0.5))**0.5)*s**2
+    print("the area of your pentagon is: "+str(round((area),2)))
 
 #Question 5
 print("Give me a number for the fibonacci sequence: ")
