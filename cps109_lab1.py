@@ -8,7 +8,9 @@ except Exception as e:
     print("pls enter an integer. Restart the code. (idont wanna code the rest)")
 else: 
     x = round(((int)(cels)*(9/5)+32),2)
+    k= cels + 273.15
     print("Converted Fahrenheit: "+str(x))
+    print("Converted Kelvin: "+str(k))
 
 #Question two 
 print("Input three polynomial values separated by a space: ")
@@ -28,7 +30,7 @@ try:
 except Exception as e:
     print(" int. Restart the code.")
 else: 
-    print(a<=(b+c) and b<=(a+c) and c<=(a+b))
+    print(a<(b+c) and b<(a+c) and c<(a+b))
 
 #Question 4
 print("Enter a side length for a pentagon: ")
