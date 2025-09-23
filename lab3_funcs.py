@@ -21,9 +21,18 @@ def lettergrade(pct):
     If the value of pct is outside this range, return None.
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    if pct >100 or pct <0:
+        return None
+    elif pct >= 80:
+        return 'A'
+    elif pct >= 70:
+        return 'B'
+    elif pct >= 60:
+        return 'C'
+    elif pct >= 50: 
+        return 'D'
+    else:
+        return 'F'
 
 # --------------------------------------------------------------
 # 2) Duplicate Sequence Elements
@@ -57,9 +66,14 @@ def duplicates(items):
     science that you will explore further in future courses. 
 
     '''
-
-    pass # replace 'pass' with a return statement.
-    
+    if len(items) != 3:
+        return 'invalid input'
+    elif items[0] == items[1] == items[2]:
+        return 'three-of-a-kind'
+    elif items[0]==items[1] or items[0]==items[2] or items[1]==items[2]:
+        return 'two-of-a-kind'
+    else:
+        return 'one-of-a-kind'
     
 # --------------------------------------------------------------
 # 3) Inversions of Three
@@ -111,15 +125,25 @@ def inversions(items):
     the end of the course, and in future courses.
     
     '''
-
-    pass # replace 'pass' with a return statement.    
-    
-    
+    checka = sorted(items)
+    if len(items) != 3:
+        return -1
+    elif items == checka:
+        return 0
+    elif items[0] != checka[0] and items[1] != checka[1] and items[2] != checka[2]:
+        return 3
+    elif items[0] != checka[0] and items[1] != checka[1]:
+        return 2
+    elif items[0] != checka[0] and items[2] != checka[2]:
+        return 2
+    elif items[1] != checka[1] and items[2] != checka[2]:
+        return 2   
+    else:
+        return 1
 # --------------------------------------------------------------
 # 4) Increasing, Strictly or Otherwise?
 # --------------------------------------------------------------   
-def increasing(items, strict):   
-    
+def increasing(items, strict):       
     '''
     Once more, assume items is a sequence. The second parameter,
     'strict', is boolean (True or False)
@@ -150,14 +174,25 @@ def increasing(items, strict):
     LOOPING IS NOT REQUIRED TO SOLVE THIS PROBLEM!
     '''
     
-    pass # replace 'pass' with a return statement.
-   
+    if len(items) != 3:
+        return 'invalid input'
+    elif strict not in [True, False]:
+        return 'invalid input'
+    elif strict == True:
+        if items[0] < items[1] < items[2]:
+            return True
+        else:
+            return False
+    elif strict == False:
+        if items[0] <= items[1] <= items[2]:
+            return True
+        else:
+            return False
    
 # --------------------------------------------------------------
 # 5) Python as a Calculator 
 # --------------------------------------------------------------      
 def calculator(op1, op2, operator):     
-    
     '''
     This function accepts three arguments:
     op1, op2: assume both of these are integers
@@ -180,7 +215,21 @@ def calculator(op1, op2, operator):
     would be a division by zero, return None.
     '''
     
-    pass # replace 'pass' with a return statement.
-    
+    if operator == '+':
+        return op1 + op2
+    elif operator == '-':
+        return op1 - op2
+    elif operator == '*':
+        return op1 * op2
+    elif operator == '/':
+        if op2 == 0:
+            return None
+        else:
+            return op1 / op2
+    elif operator == '**':
+        return op1 ** op2
+    else:
+        return None
+
     
         
