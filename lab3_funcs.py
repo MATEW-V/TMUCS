@@ -125,21 +125,17 @@ def inversions(items):
     the end of the course, and in future courses.
     
     '''
-    checka = sorted(items)
     if len(items) != 3:
         return -1
-    elif items == checka:
-        return 0
-    elif items[0] != checka[0] and items[1] != checka[1] and items[2] != checka[2]:
-        return 3
-    elif items[0] != checka[0] and items[1] != checka[1]:
-        return 2
-    elif items[0] != checka[0] and items[2] != checka[2]:
-        return 2
-    elif items[1] != checka[1] and items[2] != checka[2]:
-        return 2   
-    else:
-        return 1
+    a, b, c = items
+    count = 0
+    if a > b:
+        count += 1
+    if a > c:
+        count += 1
+    if b > c:
+        count += 1
+    return count
 # --------------------------------------------------------------
 # 4) Increasing, Strictly or Otherwise?
 # --------------------------------------------------------------   
