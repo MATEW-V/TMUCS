@@ -20,9 +20,7 @@ def sumeven(n):
     without writing a loop at all?
     
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    return(n*(n-1))
 
 # --------------------------------------------------------------
 # 2) Summing Squares
@@ -44,9 +42,10 @@ def sumsquares(n):
     own code you wrote previously!
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    x=0
+    for i in range(n):
+        x+=i**2
+    return(x)
 
 # --------------------------------------------------------------
 # 3) Summing Odd Digits
@@ -69,10 +68,14 @@ def odddigitsum(num):
     bring this up here of all places...? 
     
     '''
+    oddsum=0
+    num = abs(num)
+    numnuts=list(str(num))
+    for i in range(len(numnuts)):
+        if int(numnuts[i]) % 2 !=0:
+            oddsum+=int(numnuts[i])
+    return(oddsum)
 
-    pass # replace 'pass' with a return statement.    
-    
-    
 # --------------------------------------------------------------
 # 4) Listing Exponentials
 # --------------------------------------------------------------
@@ -93,10 +96,10 @@ def listexponential(n, base):
     every day for a month? 
    
     '''
-
-    pass # replace 'pass' with a return statement. 
-    
-    
+    explist=[]
+    for i in range(n):
+        explist.append(base**i)
+    return(explist)
 # --------------------------------------------------------------
 # 5) Concatenating Digits
 # --------------------------------------------------------------      
@@ -115,10 +118,9 @@ def digitcat(s):
     If there are no digits, return None.
 
     '''
+    getint = list(s)
+    pass
 
-    pass # replace 'pass' with a return statement.
-    
-    
 # --------------------------------------------------------------
 # 6) Parsing Floats
 # --------------------------------------------------------------      
