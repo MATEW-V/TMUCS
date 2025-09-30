@@ -43,7 +43,7 @@ def sumsquares(n):
 
     '''
     x=0
-    for i in range(n):
+    for i in range(n+1):
         x+=i**2
     return(x)
 
@@ -119,7 +119,12 @@ def digitcat(s):
 
     '''
     getint = list(s)
-    pass
+    newlist = [k for k in getint if k.isdigit()]
+    ans = "".join(newlist)
+    if ans=="":
+        return None
+    else:
+        return(int(ans))
 
 # --------------------------------------------------------------
 # 6) Parsing Floats
@@ -143,10 +148,11 @@ def stringtofloatlist(fltstr):
     either way!
     
     '''
+    fltlist=fltstr.split(",")
+    for i in range(len(fltlist)):
+        fltlist[i]=float(fltlist[i])
+    return(fltlist)
 
-    pass # replace 'pass' with a return statement.
-
-    
 # --------------------------------------------------------------
 # 7) Maximum of Each Type
 # --------------------------------------------------------------      
@@ -183,11 +189,20 @@ def maxbytype(items):
     string if there is no string?
 
     '''
-
-    pass # replace 'pass' with a return statement.
-    
-
-    
-
-    
-        
+    intsort=[]
+    strsort=[]
+    fltsort=[]
+    for i in range(len(items)):
+        if type(items[i]) == int:
+            intsort.append(items[i])
+        if type(items[i]) == str:
+            strsort.append(items[i])
+        if type(items[i]) == float:
+            fltsort.append(items[i])
+    if intsort==[]:
+        intsort.append(None)
+    if strsort==[]:
+        strsort.append(None)
+    if fltsort==[]:
+        fltsort.append(None)
+    return(max(intsort),max(fltsort),max(strsort))
