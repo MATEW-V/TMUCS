@@ -99,12 +99,10 @@ def count_divisible_pairs(items):
     - 8 divisible by 4? Yes (8/4 = 2) ✓
     Returns: 4
     '''
-    while(0 in items):
-        items.remove(0)
     count=0
     for i in range(len(items)):
-        for n in range(len(items)):
-            if i!=n and items[i]%items[n]==0:
+        for j in range(i+1,len(items)):#i+1 , len(items) to avoid double counting
+            if items[j] != 0 and items[i] % items[j] == 0:
                 count+=1
     return(count)
 # --------------------------------------------------------------
