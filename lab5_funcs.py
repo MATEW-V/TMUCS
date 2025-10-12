@@ -112,9 +112,18 @@ def altsignsum(items):
     If the input is the empty list, return 0
 
     ''' 
-    for i in items:
-        return(True)
-    pass
+    sum=0
+    count=0
+    if items==[]:
+        return(0)
+    else:
+        for i in items:
+            count+=1
+            if count%2!=0:
+                sum+=i
+            else:
+                sum-=i
+        return(sum)
 # --------------------------------------------------------------
 # 5) Domino Cycle
 # --------------------------------------------------------------
@@ -143,8 +152,10 @@ def domninocycle(tiles):
     does not match the 2nd value on the last tile (3)
     
     '''
-
-
-
-    pass # replace 'pass' with a return statement.
-
+    if not tiles:
+        return True
+    if len(tiles) == 1:
+        return tiles[0][0] == tiles[0][1]
+    
+    # Check all connections including circular
+    return all(tiles[i][1] == tiles[i + 1][0] for i in range(len(tiles) - 1)) and tiles[0][0] == tiles[-1][1]

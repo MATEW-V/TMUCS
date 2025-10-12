@@ -54,24 +54,24 @@ class TestLab5(unittest.TestCase):
     def test_altsignsum_6(self):
         self.assertEqual(lab5_funcs.altsignsum([1, -2, 3, -4, 5, -6]), 21)
 
-    # def test_domninocycle_1(self):
-    #     self.assertTrue(lab5_funcs.domninocycle([(3, 5), (5, 2), (2, 3)]))
-    # def test_domninocycle_2(self):
-    #     self.assertFalse(lab5_funcs.domninocycle([(2, 5), (5, 2), (2, 3)]))
-    # def test_domninocycle_3(self):
-    #     self.assertTrue(lab5_funcs.domninocycle([]))
-    # def test_domninocycle_4(self):
-    #     self.assertFalse(lab5_funcs.domninocycle([(2, 5)]))
-    # def test_domninocycle_5(self):
-    #     self.assertTrue(lab5_funcs.domninocycle([(1, 1)]))
-    # def test_domninocycle_6(self):
-    #     self.assertTrue(lab5_funcs.domninocycle([(6, 5), (5, 2), (2, 3), (3, 6)]))
-    # def test_domninocycle_7(self):
-    #     self.assertFalse(lab5_funcs.domninocycle([(3, 5), (5, 1), (2, 3), (3, 3)]))
-    # def test_domninocycle_8(self):
-    #     self.assertTrue(lab5_funcs.domninocycle([(2, 5), (5, 2), (2, 3), (3, 5), (5, 2)]))
-    # def test_domninocycle_9(self):
-    #     self.assertFalse(lab5_funcs.domninocycle([(3, 5), (5, 5), (5, 5), (5, 5), (5, 2)]))
+    def test_domninocycle_1(self):
+        self.assertTrue(lab5_funcs.domninocycle([(3, 5), (5, 2), (2, 3)]))
+    def test_domninocycle_2(self):
+        self.assertFalse(lab5_funcs.domninocycle([(2, 5), (5, 2), (2, 3)]))
+    def test_domninocycle_3(self):
+        self.assertTrue(lab5_funcs.domninocycle([]))
+    def test_domninocycle_4(self):
+        self.assertFalse(lab5_funcs.domninocycle([(2, 5)]))
+    def test_domninocycle_5(self):
+        self.assertTrue(lab5_funcs.domninocycle([(1, 1)]))
+    def test_domninocycle_6(self):
+        self.assertTrue(lab5_funcs.domninocycle([(6, 5), (5, 2), (2, 3), (3, 6)]))
+    def test_domninocycle_7(self):
+        self.assertFalse(lab5_funcs.domninocycle([(3, 5), (5, 1), (2, 3), (3, 3)]))
+    def test_domninocycle_8(self):
+        self.assertTrue(lab5_funcs.domninocycle([(2, 5), (5, 2), (2, 3), (3, 5), (5, 2)]))
+    def test_domninocycle_9(self):
+        self.assertFalse(lab5_funcs.domninocycle([(3, 5), (5, 5), (5, 5), (5, 5), (5, 2)]))
 
 if __name__ == '__main__':
     unittest.main(exit=True)
