@@ -112,6 +112,15 @@ def greaterhalf(n):
 # Given a string and a character, output the number of 
 # times that the character appears in the string
 
+def countchar(word,char):
+    count=0
+    check=list(word)
+    for i in check:
+        if i == char:
+            count+=1
+    return(count)
+# print(countchar("wasdwsdwasdwasd","a"))
+
 # 5. List Generation
 
 # The following questions involve receiving a sequence as 
@@ -122,18 +131,15 @@ def greaterhalf(n):
 # some of these questions using list comprehension instead
 # of a large structure of code
 
-
 # A. Given a list of integers, return the integers that are 
 # both odd and multiples of 3.
 
 # list_gen_a([3,6,9,12,5,4])  >>  [3,9]
 
-
 # B. Given a string, produce a list of characters that are 
 # between the letters "a" and "m"
 
 # list_gen_b("Hello")  >>  ["e", "l", "l"]
-
 
 # C. Create a function called str_add2(x) that takes in a 
 # string value, converts it to an integer, adds 2, converts
@@ -143,6 +149,22 @@ def greaterhalf(n):
 # stored value increased by 2.
 
 # list_gen_c(["12", "-4", "23", "99", "-11"])  >>  ["14, "-2", "25", "101", "-9]
+
+def listgen(x):
+    if isinstance(x,str):
+        strlist=list(x)
+        return [m for m in strlist if  m > "a" and m < "m"]
+    else:
+        for i in x:
+            if isinstance(x[i],int):
+                return[j for j in x if j%2!=0 and j%3==0]
+def str_add2(x):
+    intvalue=list(map(int,str(x)))
+    newintvalue=str([x+2 for x in intvalue])
+    return(newintvalue)
+#print(listgen("wasdwasdHellomyname"))
+#print(listgen([3,6,9,12,5,4]))
+#print(str_add2("12345"))
 
 # 6. Create a function called max_many() that prompts the user 
 # to input an integer value, representing the number of values 
@@ -163,6 +185,18 @@ def greaterhalf(n):
 
 # >> 20
 
+def max_many():
+    info=[]
+    count=0
+    amt=input("Enter an integer: ")
+    while (True):
+        value=input("sum num: ")
+        info.append(value)
+        count+=1
+        if count==int(amt):
+            break
+    return(max(info))
+# print(max_many())
 
 # 7. Angles (Long one, some hints at the very end)
 
