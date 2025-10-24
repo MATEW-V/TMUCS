@@ -114,21 +114,22 @@ def first_letter(digits):
     of five, one, one, three are f, o, o, t.  
     Similarly, '0123456789613' returns 'zottffssensot'.
     '''
-    newstr=""
+    num_dict = {
+        '0': 'z',
+        '1': 'o',
+        '2': 't',
+        '3': 't',
+        '4': 'f',
+        '5': 'f',
+        '6': 's',
+        '7': 's',
+        '8': 'e',
+        '9': 'n'
+    }  
+    result = ''
     for i in digits:
-        if i=="1":
-            newstr=digits.replace(i,"o")
-        elif i=="2" or i=="3":
-            newstr=digits.replace(i,"t")
-        elif i=="4" or i=="5":
-            newstr=digits.replace(i,"f")
-        elif i=="6" or i=="7":
-            newstr=digits.replace(i,"s")
-        elif i=="8":
-            newstr=digits.replace(i,"e")
-        elif i=="9":
-            newstr=digits.replace(i,"n")
-    return(newstr)
+        result += num_dict.get(i, '')
+    return result
 
 # Q6) 
 def deduplicate(s):
@@ -139,10 +140,11 @@ def deduplicate(s):
     since it changes the 'ee' to 'e'.
     'boomboomeeraaang' returns 'bombomerang' .
     '''
-    pass # replace 'pass' with a return statement.
-
-
-
-
-
-        
+    if s=="":
+        return("")
+    explist=list(s)
+    nwlist=[explist[0]]
+    for i in range(1,len(explist)):
+        if explist[i]!=explist[i-1]:
+            nwlist.append(explist[i])
+    return("".join(nwlist))
