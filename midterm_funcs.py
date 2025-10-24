@@ -37,8 +37,26 @@ def roman_to_arabic(rn):
     IX   = 9
     X    = 10
     '''
-    
-    pass 
+    if rn == 'I':
+        return(1)
+    elif rn == 'II':
+        return(2)
+    elif rn == 'III':
+        return(3)
+    elif rn == 'IV':
+        return(4)
+    elif rn == 'V':
+        return(5)
+    elif rn == 'VI':
+        return(6)
+    elif rn == 'VII':
+        return(7)
+    elif rn == 'VIII':
+        return(8)
+    elif rn == 'IX':
+        return(9)
+    elif rn == 'X':
+        return(10)
 
 
 # Q2)
@@ -48,8 +66,11 @@ def sum_even(n):
     Return the sum of the integers, between 1-n inclusive, 
     that are even
     '''
-    
-    pass
+    count=0
+    for i in range(n+1):
+        if i%2==0:
+            count+=i
+    return(count)
 
 
 # Q3)
@@ -60,8 +81,12 @@ def integers_exceed(n):
     For example, if n is 11, we must add 1+2+3+4+5 = 15,
     and therefore the answer is 5.
     '''
-
-    pass
+    count=0
+    inc=1
+    while (n>count):
+        inc+=1
+        count+=inc
+    return(inc)
 
 
 # Q4)
@@ -74,8 +99,10 @@ def pyramid_blocks(n, m):
     reaches 1 first. Assume n and m are integers. Return the number 
     of blocks in the pyramid.
     '''
-    pass # replace 'pass' with a return statement.
-
+    blk=0
+    for i in range(min(m,n)):
+        blk+=(m-i)*(n-i)
+    return(blk)
 
 # Q5)
 def first_letter(digits):
@@ -87,9 +114,21 @@ def first_letter(digits):
     of five, one, one, three are f, o, o, t.  
     Similarly, '0123456789613' returns 'zottffssensot'.
     '''
-
-    pass
-
+    newstr=""
+    for i in digits:
+        if i=="1":
+            newstr=digits.replace(i,"o")
+        elif i=="2" or i=="3":
+            newstr=digits.replace(i,"t")
+        elif i=="4" or i=="5":
+            newstr=digits.replace(i,"f")
+        elif i=="6" or i=="7":
+            newstr=digits.replace(i,"s")
+        elif i=="8":
+            newstr=digits.replace(i,"e")
+        elif i=="9":
+            newstr=digits.replace(i,"n")
+    return(newstr)
 
 # Q6) 
 def deduplicate(s):
