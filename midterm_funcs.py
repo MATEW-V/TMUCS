@@ -87,8 +87,7 @@ def integers_exceed(n):
         inc+=1
         count+=inc
     return(inc)
-
-
+    
 # Q4)
 def pyramid_blocks(n, m):
     '''
