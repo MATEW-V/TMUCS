@@ -37,8 +37,14 @@ def largest_diff(items):
     This function can be solved with a single line of code.
 
     '''
+    #amatur solution works
+    # amcon=[]
+    # for i in items:
+    #     for j in items:
+    #         amcon.append(abs(i-j))
+    # return(max(amcon))
 
-    pass # replace 'pass' with a return statement.
+    return(max(items)-min(items))
 
 # --------------------------------------------------------------
 # 2) Target sum of two list elements
@@ -68,9 +74,19 @@ def two_summers(items, target):
     the scenes. 
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    #easymode
+    # for i in items:
+    #     for j in items:
+    #         if i+j==target and i!=j:
+    #             return((i,j))
+    
+    for i in items:
+        if max(items)+i==target and i!=max(items):
+            return((i,max(items)))
+        elif min(items)+i==target:
+            return((min(items),i))
+        elif i==max(items):
+            return(None)
 
 # --------------------------------------------------------------
 # 3) Largest on the left
