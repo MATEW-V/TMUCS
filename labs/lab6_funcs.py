@@ -79,7 +79,7 @@ def two_summers(items, target):
     #     for j in items:
     #         if i+j==target and i!=j:
     #             return((i,j))
-    
+
     for i in items:
         if max(items)+i==target and i!=max(items):
             return((i,max(items)))
@@ -117,8 +117,7 @@ def count_dominators(items):
 
     '''
 
-    pass # replace 'pass' with a return statement.
-
+    pass
 
 # --------------------------------------------------------------
 # 4) Rooks on a rampage
