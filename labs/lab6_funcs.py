@@ -116,9 +116,17 @@ def count_dominators(items):
     the scenes. 
 
     '''
-
-    pass
-
+    if len(items)==0:
+        return 0
+    count=1
+    cmax=items[-1]
+    for i in reversed(range(0, len(items)-1)):
+        if items[i]>cmax:
+            count+=1
+            cmax=items[i]
+    return count
+    #TAKENOTES 
+    #IM PYTHONING IT
 # --------------------------------------------------------------
 # 4) Rooks on a rampage
 # --------------------------------------------------------------
@@ -144,13 +152,6 @@ def safe_squares_rooks(n, rooks):
     n = 4 and rooks = [(2, 3), (0, 1)] should return 4, since
     four squares are safe from the rooks.
 
-    AMATEUR HOUR:
-    
-    A catastrophically inefficient way to solve this problem 
-    would be to iterate through all n-by-n squares on the 
-    board, and then for each of those squares, go through
-    every rook in the list to see if that square is safe.
-
     CHALLENGE MODE: 
 
     Your mission, should you choose to accept it, is to solve 
@@ -159,10 +160,23 @@ def safe_squares_rooks(n, rooks):
     or sets might help.
 
     '''
+    # xr,yr=[],[]
+    # for i,x in enumerate(data):
+    #     if i%2==0:
+    #         xr.append(x)
+    #     else:
+    #         yr.append(x)
 
-    pass # replace 'pass' with a return statement.
+    #HOLY SET COMPRESEHMSION
+    data=list(sum(rooks,()))
+    xrook = len({x for i, x in enumerate(data) if i % 2 == 0})
+    yrook = len({y for i, y in enumerate(data) if i % 2 != 0})
 
-
+    if xrook>=yrook:
+        return((n**2)-xrook*n-yrook*(n-xrook))
+    else:
+        return((n**2)-yrook*n-xrook*(n-yrook))
+               
 # --------------------------------------------------------------
 # 5) That's enough of you!
 # --------------------------------------------------------------
@@ -178,19 +192,31 @@ def remove_after_kth(items, k):
     of each element are kept, and all occurrences of that 
     element after the first k are discarded.
 
-    AMATEUR HOUR:
-
-    For every element, before adding it to the new list, 
-    look back and see if you've already seen k occurrences.
-
     CHALLENGE MODE:
-
     Use some clever bookkeeping (pick a good data structure) 
     to avoid ever looking backwards. This includes looking
     backwards in the new list, and the original list. Make
     one pass, and one pass only.
-
     '''
+    newlist=[]
+    countdict={}
+    if k==0:
+        return[]
+    for i in items:
+        if i not in countdict:
+            countdict[i]=1
+            newlist.append(i)
+        else:
+            if countdict[i]<k:
+                countdict[i]+=1
+                newlist.append(i)
+    return(newlist)
+    #lwk forgot abt dict learn this shit
 
-    pass # replace 'pass' with a return statement.
-
+    # TS STUPID WHYU IT GOTTA BE IN ORDER
+    # if k==0:
+    #     return[]
+    # for i in items:
+    #     if items.count(i)>k:
+    #         items.remove(i)
+    # return(items)
