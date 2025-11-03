@@ -19,3 +19,24 @@ def animcount(list):
             count+=1
     return(animdict) #ts sucks fix it
 print(animcount(animals))
+
+def countdown(n):
+    if n<1:
+        return
+    else:
+        print(n)
+        countdown(n-2)
+
+def factorial(n):
+    if n==0:
+        return(1)
+    else:
+        return(n*factorial(n-1))
+
+def fib(n):
+    if n==1:
+        return(1)
+    elif n==0:
+        return(0)
+    else:
+        return(fib(n-1)+fib(n-2))
