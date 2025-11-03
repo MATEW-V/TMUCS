@@ -77,3 +77,14 @@ def colour_trio(colors):
         x = new_x
 
     return x[0]
+
+def count_dominators(items):
+    if len(items)==0:
+        return 0
+    count=1
+    cmax=items[-1]
+    for i in reversed(range(0, len(items)-1)):
+        if items[i]>cmax:
+            count+=1
+            cmax=items[i]
+    return count
