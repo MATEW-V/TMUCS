@@ -7,32 +7,30 @@ not use recursion, you risk receiving a zero on the lab submission.
 
 '''
 
-
 # --------------------------------------------------------------
 # 1) Count occurrences
 # --------------------------------------------------------------
 
 def count(items, target):
-
     '''
     This function emulates the list method 'count'. Assume items
     is a list, and target is some object. Return the number of
     times that target appears in items.
     
     YOU MUST USE RECURSION!    
-    
     '''
-
-
-    pass # replace 'pass' with a return statement.
-
+    if not items:
+        return 0
+    if items[0] == target:
+        return 1 + count(items[1:], target)
+    else:
+        return count(items[1:], target)
     
 # --------------------------------------------------------------
 # 2) Sum of integers
 # --------------------------------------------------------------
 
 def integer_sum(items):
-
     '''
     This function calculates and returns the sum of the integer
     values in the list 'items'.
@@ -48,17 +46,18 @@ def integer_sum(items):
     YOU MUST USE RECURSION!    
     
     '''
-
-
-    pass # replace 'pass' with a return statement.
-    
+    if not items:
+        return 0
+    if type(items[0])==int:
+        return items[0]+integer_sum(items[1:])
+    else:
+        return(integer_sum(items[1:]))
   
 # --------------------------------------------------------------
 # 3) Exponentiation
 # --------------------------------------------------------------
 
 def pow_rec(base, exponent):
-
     '''
     Assume that base and exponent are integers >= 0.
     
@@ -68,17 +67,16 @@ def pow_rec(base, exponent):
     YOU MUST USE RECURSION!
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
-
+    if exponent==0:
+        return(1)
+    else:
+        return base*pow_rec(base,exponent-1)
     
 # --------------------------------------------------------------
 # 4) Palindrome checker
 # --------------------------------------------------------------
 
 def is_palindrome(text):
-
     '''
     A recursion classic.
     
@@ -91,16 +89,18 @@ def is_palindrome(text):
     YOU MUST USE RECURSION!
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    if len(text)<=1:
+        return True
+    elif text[0]==text[-1]:
+        return is_palindrome(text[1:-1])
+    else:
+        return False
 
 # --------------------------------------------------------------
 # 5) Nested list reverser
 # --------------------------------------------------------------
 
 def nested_reverse(items):
-
     '''
     Assume that items is a list, that may contain nested lists
     as elements. This function will perform a reverse operation,
@@ -115,6 +115,5 @@ def nested_reverse(items):
     YOU MUST USE RECURSION!
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    if type(items[0])==list:
+        items[0]=reversed(items[0])
