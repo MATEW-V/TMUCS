@@ -73,7 +73,7 @@ def colour_trio(colors):
             if x[i] == x[i-1]:
                 new_x.append(x[i])
             else:
-                new_x.append((cset - {x[i], x[i-1]}).pop())
+                new_x.append((cset - {x[i], x[i-1]}).pop()) #note
         x = new_x
 
     return x[0]
