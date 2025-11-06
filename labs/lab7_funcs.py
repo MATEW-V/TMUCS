@@ -115,7 +115,11 @@ def nested_reverse(items):
     YOU MUST USE RECURSION!
 
     '''
-    if len(items)<=1:
+    if not items:
         return items
     else:
-        pass
+        last = items[-1]
+        if type(last) == list:
+            last = nested_reverse(last)
+        return [last] + nested_reverse(items[:-1])
+    #base case is when items[:-1] empties out

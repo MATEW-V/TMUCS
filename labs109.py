@@ -37,7 +37,7 @@ def riffle(items, out=True):
     for i in range(len(h1)):
         shuffle.append(h1[i])
         shuffle.append(h2[i])
-    return(shuffle)
+    return(shuffle) #optimize
 
 def only_odd_digits(n):
     checka=True
@@ -75,8 +75,7 @@ def colour_trio(colors):
             else:
                 new_x.append((cset - {x[i], x[i-1]}).pop()) #note
         x = new_x
-
-    return x[0]
+    return x[0] #redo this too bum
 
 def count_dominators(items):
     if len(items)==0:
