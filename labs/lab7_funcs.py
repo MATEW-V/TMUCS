@@ -115,5 +115,7 @@ def nested_reverse(items):
     YOU MUST USE RECURSION!
 
     '''
-    if type(items[0])==list:
-        items[0]=reversed(items[0])
+    if len(items)<=1:
+        return items
+    else:
+        pass
