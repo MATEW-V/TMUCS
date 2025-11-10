@@ -72,11 +72,16 @@ def play_sudoku(difficulty):
     print("Players should be able to play until they win/quit.")
 
     while True:
-        command = input("Enter move(ex. A6 3) or 'quit' to go menu: ").strip().lower()
-        if command == "quit":
+        command = input("Enter move(ex. A6 3) or 'quit' to go menu: ").strip().upper().replace(" ","")
+        if command == "QUIT":
             break
-        elif command in possmoves:
-            pass #convert A6 3 into specific coord and num input. check if valid and correct. 
+        elif len(command)==3 and command[0]+command[1] in possmoves and command[2]!='0' and command[2].isdigit():
+            clear_terminal()
+            print(command)
+        else:
+            clear_terminal()
+            print('invalid move or command')
+            #convert A6 3 into specific coord and num input. check if valid and correct. 
         #ADD HINT / Solve next move or print useful strategies
         print(
         '''
