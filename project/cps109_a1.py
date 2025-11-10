@@ -72,15 +72,15 @@ def play_sudoku(difficulty):
     print("Players should be able to play until they win/quit.")
 
     while True:
-        command = input("Enter move(ex. A6) or 'quit' to go menu: ").strip().lower()
+        command = input("Enter move(ex. A6 3) or 'quit' to go menu: ").strip().lower()
         if command == "quit":
             break
         elif command in possmoves:
-            pass
-        #ADD HINT / Solve next move or print useful staregies
+            pass #convert A6 3 into specific coord and num input. check if valid and correct. 
+        #ADD HINT / Solve next move or print useful strategies
         print(
         '''
-          a b c | d e f | g h i
+          A B C | D E F | G H I
         1 x x x | x x x | x x x
         2 x x x | x x x | x x x
         3 x x x | x x x | x x x
@@ -114,7 +114,7 @@ def main():
             case "hard" | "3":
                 play_sudoku("hard")
                 show_main_screen()
-            case "Times" | "4":
+            case "times" | "4":
                 print("work in prog") #"read and write times of how long each one took"
             case _:
                 print("Invalid Command. Try again")
