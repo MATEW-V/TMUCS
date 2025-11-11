@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import unittest
-import labs.lab8_funcs as lab8_funcs
-
+import lab8_funcs
 class TestCount(unittest.TestCase):
 
     def test1(self):

@@ -28,10 +28,16 @@ def sum_words(items):
     to catch runtime errors if they happen.
 
     '''
+    x=0
+    if not items:
+        return 0
+    for i in items:
+        try:
+            x+=int(i)
+        except:
+            pass
+    return x
 
-    pass # replace 'pass' with a return statement.
-
-    
 # --------------------------------------------------------------
 # 2) Maximum population
 # --------------------------------------------------------------
@@ -42,9 +48,7 @@ def max_pop(items):
     Return the country with the largest population.
     Use exception handling to deal with a bad tuple, in which 
     case you return None.
-
     For example:
-    
     max_pop([('China', 1389618778), ('India', 1311559204), ('US', 331883986)])
     would return 'China'
 
@@ -60,9 +64,17 @@ def max_pop(items):
     HINT: you do not need to say the type of exception, just say except
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    try:
+        mp = -1
+        cmp = None
+        for c, p in items:
+            pop_int = int(p)
+            if pop_int > mp:
+                mp = pop_int
+                cmp = c
+        return cmp 
+    except:
+        return None
 
 # --------------------------------------------------------------
 # 3) Product by index
@@ -87,12 +99,18 @@ def product_by_index(items, ids) :
     productindex([5, 2, 9], [1, 0, 1, 1, 5]) would return None.
 
     Do NOT use if/else to test index ranges. You should use
-    a try/except block.    
+    a try/except block. 
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    if not items or not ids:
+        return None
+    prod = 1
+    try:
+        for i in ids:
+            prod *= items[i]
+        return prod
+    except IndexError:
+        return None
 
 # --------------------------------------------------------------
 # 4) Coin counter
@@ -114,9 +132,11 @@ def coins(s) :
     money('43') raises ValueError
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    coins='pdqn'
+    if all(char in coins for char in s):
+        return(s.count("p")+(s.count("d")*10)+(s.count("n")*5)+(s.count("q")*25))
+    else:
+        raise ValueError
 
 # --------------------------------------------------------------
 # 5) Name checker
@@ -137,8 +157,10 @@ def check_name(first, last):
     If either name is not valid, raise a ValueError exception.
     '''
 
-    pass # replace 'pass' with a return statement.
-
+    if first[0].isupper() and last[0].isupper() and first[1:].islower() and last[1:].islower() and first.isalpha() and last.isalpha():
+        return (last+", "+first)
+    else:
+        raise ValueError
 
 # --------------------------------------------------------------
 # 6) Integers from iterators
@@ -158,6 +180,11 @@ def get_next_int(it):
     to catch the StopIteration error when it occurs. 
 
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    while True:
+        try:
+            x = next(it)
+            if type(x) == int:
+                return x
+        except StopIteration:
+            return None
+        
