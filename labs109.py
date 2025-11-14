@@ -158,3 +158,5 @@ def safe_squares_rooks(n,rooks):
 # def words_with_given_shape(words, shape):  //uses words_sorted.txt do later
 #     pass
 
+def is_left_handed(pips):
+    pass

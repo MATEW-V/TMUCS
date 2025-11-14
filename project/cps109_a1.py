@@ -77,12 +77,14 @@ def play_sudoku(difficulty):
             break
         elif len(command)==3 and command[0]+command[1] in possmoves and command[2]!='0' and command[2].isdigit():
             clear_terminal()
-            print(command)
+            xdir=ord(command[0])-64  #ord() gives unicode values, A-Z in caps is 65 - 90 so offset 64
+            ydir=command[1] #num row 
+            uguess=command[2] # elem in said row
+            print(xdir,ydir,uguess) #input from user, check if matches
         else:
             clear_terminal()
             print('invalid move or command')
-            #convert A6 3 into specific coord and num input. check if valid and correct. 
-        #ADD HINT / Solve next move or print useful strategies
+        #ADD HINT / Solve next move or print useful strategies maybe
         print(
         '''
           A B C | D E F | G H I
