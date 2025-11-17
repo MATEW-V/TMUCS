@@ -26,7 +26,6 @@ def show_main_screen():
     display_menu()
 
 def play_sudoku(difficulty):
-    """Main game loop for Sudoku"""
     clear_terminal()
     print(f"=== {difficulty.upper()} SUDOKU ===")
     #SUDOKU TEMPLATES / data from Sudoku.com. Randomly Generated but still possible. Taken from "Medium", "Expert", "Extreme"
@@ -124,13 +123,7 @@ def play_sudoku(difficulty):
         # 2 | x x x | x x x | x x x
         # 3 | x x x | x x x | x x x
         # -------------------------
-        # 4 | x x x | x x x | x x x
-        # 5 | x x x | x x x | x x x
-        # 6 | x x x | x x x | x x x
-        # -------------------------
-        # 7 | x x x | x x x | x x x
-        # 8 | x x x | x x x | x x x
-        # 9 | x x x | x x x | x x x
+        # 4 | x x x | x x x | x x x etc
     
         command = input("Enter move(ex. A6 3) or 'quit' to go menu: ").strip().upper().replace(" ","")
         if command == "QUIT":
@@ -145,6 +138,8 @@ def play_sudoku(difficulty):
             if check==uguess:
                 print("correct")
                 board[ydir][xdir]=uguess
+            elif board==ans:
+                print("win")
             else:
                 print("incorrect")
         else:
