@@ -12,7 +12,7 @@ def clear_terminal(): #clear cmd
 
 def display_menu():
     print('''    Welcome to my Sudoku Game on Terminal. 
-    Recommended to make the terminal larger.
+    I recommend making the terminal larger.
     If unsure on how to play, please search up the rules.''')
     print('''    Select a difficulty or command (Num or CMD itself):
         1. Easy
@@ -63,7 +63,6 @@ def play_sudoku(difficulty):
         [6,8,5,2,3,1,4,9,7],
         [7,3,4,8,9,5,1,2,6],
         [2,1,9,4,6,7,5,8,3]]
-        
     elif difficulty == "medium":
         board=[
         [0,0,6,4,0,0,3,0,8],
@@ -85,7 +84,6 @@ def play_sudoku(difficulty):
         [8,7,2,5,4,9,6,1,3],
         [6,9,4,8,3,1,2,5,7],
         [5,1,3,6,7,2,9,8,4]]
-        
     else: #hard, couldve elifed but it works
         board=[
         [6,0,9,7,5,1,0,0,0],
@@ -107,25 +105,32 @@ def play_sudoku(difficulty):
         [1,5,0,2,0,0,4,0,0],
         [0,0,0,0,0,0,0,0,5],
         [7,0,0,0,0,0,0,6,0]]
-    print("Game started! Enter to Start.")
-    print("Players should be able to play until they win/quit.")
+    print("Game started! Fill in the 0s as if they were blank.")
+    print("The game ends when the Sudoku table is complete.")
 
     while True:
-        print( #forloop printa
-        '''
-          A B C | D E F | G H I
-        1 x x x | x x x | x x x
-        2 x x x | x x x | x x x
-        3 x x x | x x x | x x x
-        -----------------------
-        4 x x x | x x x | x x x
-        5 x x x | x x x | x x x
-        6 x x x | x x x | x x x
-        -----------------------
-        7 x x x | x x x | x x x
-        8 x x x | x x x | x x x
-        9 x x x | x x x | x x x
-        ''')
+        print("    A B C | D E F | G H I")
+        line='-------------------------'
+        x=''
+        for i in range(len(board)):
+            x="".join(str(board[i])).replace(",","").replace("[","").replace("]","")
+            if i%3==0 and i>0:
+                print(line)
+            print(str(i+1)+" | "+x)
+
+        # example display
+        #     A B C | D E F | G H I
+        # 1 | x x x | x x x | x x x
+        # 2 | x x x | x x x | x x x
+        # 3 | x x x | x x x | x x x
+        # -------------------------
+        # 4 | x x x | x x x | x x x
+        # 5 | x x x | x x x | x x x
+        # 6 | x x x | x x x | x x x
+        # -------------------------
+        # 7 | x x x | x x x | x x x
+        # 8 | x x x | x x x | x x x
+        # 9 | x x x | x x x | x x x
     
         command = input("Enter move(ex. A6 3) or 'quit' to go menu: ").strip().upper().replace(" ","")
         if command == "QUIT":
@@ -138,19 +143,18 @@ def play_sudoku(difficulty):
             print(xdir,ydir,uguess) #input from user, check if matches
             check=ans[ydir][xdir]
             if check==uguess:
-                print("correct then update")
+                print("correct")
+                board[ydir][xdir]=uguess
             else:
                 print("incorrect")
         else:
             clear_terminal()
             print('invalid move or command')
         #ADD HINT / Solve next move or print useful strategies maybe
-        
     print(f"Returning to main menu from {difficulty} mode...")
 
 def main():
     show_main_screen()
-    
     while True:
         user_input = input().strip().lower()
         match user_input:
