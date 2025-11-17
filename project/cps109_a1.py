@@ -65,27 +65,53 @@ def play_sudoku(difficulty):
         [2,1,9,4,6,7,5,8,3]]
         
     elif difficulty == "medium":
-        pass
+        board=[
+        [0,0,6,4,0,0,3,0,8],
+        [1,0,0,0,6,3,0,0,0],
+        [3,4,0,9,2,8,0,0,1],
+        [0,0,0,3,0,0,0,0,5],
+        [0,0,5,2,0,4,0,9,0],
+        [4,0,0,0,0,7,0,0,0],
+        [8,7,0,5,4,0,0,1,0],
+        [0,9,0,0,0,1,0,0,0],
+        [0,0,0,0,0,0,0,8,4]]
+        ans=[
+        [9,2,6,4,1,5,3,7,8],
+        [1,5,8,7,6,3,4,2,9],
+        [3,4,7,9,2,8,5,6,1],
+        [2,8,1,3,9,6,7,4,5],
+        [7,3,5,2,8,4,1,9,6],
+        [4,6,9,1,5,7,8,3,2],
+        [8,7,2,5,4,9,6,1,3],
+        [6,9,4,8,3,1,2,5,7],
+        [5,1,3,6,7,2,9,8,4]]
+        
     else: #hard, couldve elifed but it works
-        pass
+        board=[
+        [6,0,9,7,5,1,0,0,0],
+        [0,0,0,0,0,3,0,0,4],
+        [0,0,0,0,0,0,0,0,0],
+        [2,0,0,0,0,0,0,0,0],
+        [0,0,8,0,6,7,0,0,0],
+        [0,0,0,0,0,9,1,5,6],
+        [1,5,0,2,0,0,4,0,0],
+        [0,0,0,0,0,0,0,0,5],
+        [7,0,0,0,0,0,0,6,0]]
+        ans=[
+        [6,4,9,7,5,1,2,8,3],
+        [8,2,1,6,9,3,5,7,4],
+        [0,0,0,0,0,0,0,0,0],
+        [2,0,0,0,0,0,0,0,0],
+        [0,0,8,0,6,7,0,0,0],
+        [0,0,0,0,0,9,1,5,6],
+        [1,5,0,2,0,0,4,0,0],
+        [0,0,0,0,0,0,0,0,5],
+        [7,0,0,0,0,0,0,6,0]]
     print("Game started! Enter to Start.")
     print("Players should be able to play until they win/quit.")
 
     while True:
-        command = input("Enter move(ex. A6 3) or 'quit' to go menu: ").strip().upper().replace(" ","")
-        if command == "QUIT":
-            break
-        elif len(command)==3 and command[0]+command[1] in possmoves and command[2]!='0' and command[2].isdigit():
-            clear_terminal()
-            xdir=ord(command[0])-64  #ord() gives unicode values, A-Z in caps is 65 - 90 so offset 64
-            ydir=command[1] #num row 
-            uguess=command[2] # elem in said row
-            print(xdir,ydir,uguess) #input from user, check if matches
-        else:
-            clear_terminal()
-            print('invalid move or command')
-        #ADD HINT / Solve next move or print useful strategies maybe
-        print(
+        print( #forloop printa
         '''
           A B C | D E F | G H I
         1 x x x | x x x | x x x
@@ -101,6 +127,25 @@ def play_sudoku(difficulty):
         9 x x x | x x x | x x x
         ''')
     
+        command = input("Enter move(ex. A6 3) or 'quit' to go menu: ").strip().upper().replace(" ","")
+        if command == "QUIT":
+            break
+        elif len(command)==3 and command[0]+command[1] in possmoves and command[2]!='0' and command[2].isdigit():
+            clear_terminal()
+            xdir=ord(command[0]) - 65  #ord() gives unicode values, A-Z in caps is 65 - 90 so offset 64
+            ydir=int(command[1]) - 1#num row 
+            uguess=int(command[2]) # elem in said row
+            print(xdir,ydir,uguess) #input from user, check if matches
+            check=ans[ydir][xdir]
+            if check==uguess:
+                print("correct then update")
+            else:
+                print("incorrect")
+        else:
+            clear_terminal()
+            print('invalid move or command')
+        #ADD HINT / Solve next move or print useful strategies maybe
+        
     print(f"Returning to main menu from {difficulty} mode...")
 
 def main():
