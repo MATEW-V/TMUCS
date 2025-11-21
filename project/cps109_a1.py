@@ -1,9 +1,19 @@
-# comments paragrapgh
+# I want to code Sudoku that can play as a Command Line Interface (CLI) inside the terminal. 
+# There would be 3 levels of difficulty and an easy to navigate structure for playing the game. 
+# As the entire game is in terminal, only text based inputs would work. The 9x9 board will be placed in a 1-9 by A-I grid. 
+# An example input would be (A1 9) to 9 in the left top corner. 
+# Obviously after each input, the board should update till completed. 
+# Each completed game will record your time taken to complete and your name. 
+# There will be an option to see a leaderboard of times for each difficulty level.
+
+# Later on the Sudoku board would be randomly generated to have valid placements and varying amounts of difficulty. 
+# The same goes for a Hint command while playing to find the next optimal input based on what is currently on the board. 
+# (These 2 features will be in an updated version and are not in the project)
 
 import os  # need clearing terminal functions for presentability
 import time  # timer on sudoku levels
 
-def clear_terminal():  # clear cmd, it does work on either OS
+def clear_terminal():  # clear cmd, it does work on either OS, tested it
     """Clears the terminal screen."""
     # windows
     if os.name == "nt":
@@ -12,7 +22,7 @@ def clear_terminal():  # clear cmd, it does work on either OS
     else:
         _ = os.system("clear")
 
-def display_menu():
+def display_menu(): #this func is main menu basically
     clear_terminal()
     print(
         """    Welcome to my Sudoku Game on Terminal. 
@@ -29,7 +39,7 @@ def display_menu():
     )
 
 def save_time_to_file(name, time_taken, difficulty):
-    #player user, difficulty and time to complete
+    #player user, difficulty and time to complete. file is made after times recorded so no need for provided file UNLESS i wanna put my times there
     try:
         with open("sudoku_times.txt", "a") as file:
             file.write(f"{name},{time_taken:.2f},{difficulty}\n")
@@ -38,7 +48,7 @@ def save_time_to_file(name, time_taken, difficulty):
         print(f"Error saving time: {e}")
 
 def display_times():
-    #taking file data to show leaderboard
+    #taking file data to show leaderboard. 
     clear_terminal()
     print("=== SUDOKU LEADERBOARDS ===\n")
     
@@ -86,7 +96,7 @@ def display_times():
     
     input("\nPress Enter to return to main menu...")
 
-def play_sudoku(difficulty):
+def play_sudoku(difficulty): #whole game system in the CLI
     clear_terminal()
     print(f"=== {difficulty.upper()} SUDOKU ===")
     # SUDOKU TEMPLATES / data from Sudoku.com. Randomly Generated but still possible. Taken from "Medium", "Expert", "Extreme"
@@ -115,7 +125,7 @@ def play_sudoku(difficulty):
             [7, 3, 0, 0, 0, 0, 1, 0, 0],
             [0, 1, 9, 4, 0, 7, 5, 0, 0],
         ]
-        # board = [ #TESTING BOARD WITH 1 EMPTY
+        # board = [ #TESTING BOARD WITH 1 EMPTY, use if you dont wanna spend 5mins on a level OR look at answer sheet
         #     [0, 2, 6, 1, 7, 8, 3, 5, 4],
         #     [8, 5, 1, 9, 4, 3, 7, 6, 2],
         #     [4, 7, 3, 6, 5, 2, 8, 1, 9],
@@ -188,8 +198,8 @@ def play_sudoku(difficulty):
     print("The game ends when the Sudoku table is complete.")
     start_time = time.time()
 
-    while True:
-        line = "-------------------------"
+    while True: #main game loop + display
+        line = "-------------------------" 
         print("    A B C | D E F | G H I")
         
         for i in range(len(board)):
@@ -245,7 +255,7 @@ def play_sudoku(difficulty):
             print("Invalid Move or CMD. A55, g88, A1 9 are all valid, 6g9 is not.")
     print(f"Returning to main menu from {difficulty} mode...")
 
-def main():
+def main(): #Command Line Interface
     display_menu()
     while True:
         user_input = input().strip().lower()
