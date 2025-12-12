@@ -263,7 +263,12 @@ def string_concat(s) :
     Then, write four tests for this function. At least ONE
     should be an edge case.
     '''
-    pass
+    res=[]
+    for x,i in enumerate(s):
+        if x>=1:
+            for j in range(x):
+                res.append(i)
+    return "".join(res)
 
 class TestUwuify(unittest.TestCase):
     
@@ -283,45 +288,45 @@ class TestUwuify(unittest.TestCase):
         self.assertEqual(transmogrify_string(""), "")
         self.assertEqual(transmogrify_string("U"), "uwu")
     
-# class TestNumEatNum(unittest.TestCase):
-#     def test_empty(self): # Empty list should stay empty
-#         self.assertEqual(num_eat_num([], 0), [])
-#         self.assertEqual(num_eat_num([], -1), [])
-#         self.assertEqual(num_eat_num([], 2), [])
+class TestNumEatNum(unittest.TestCase):
+    def test_empty(self): # Empty list should stay empty
+        self.assertEqual(num_eat_num([], 0), [])
+        self.assertEqual(num_eat_num([], -1), [])
+        self.assertEqual(num_eat_num([], 2), [])
     
-#     def test_one_element(self): # 1 element should remain unchanged
-#         self.assertEqual(num_eat_num([1], 0), [1])
-#         self.assertEqual(num_eat_num([1], -1), [1])
-#         self.assertEqual(num_eat_num([1], 2), [1])
+    def test_one_element(self): # 1 element should remain unchanged
+        self.assertEqual(num_eat_num([1], 0), [1])
+        self.assertEqual(num_eat_num([1], -1), [1])
+        self.assertEqual(num_eat_num([1], 2), [1])
     
-#     def test_two_elements(self):
-#         self.assertEqual(num_eat_num([1, 2], 0), [1, 2]) # No iters -> unchanged
-#         self.assertEqual(num_eat_num([1, 2], -1), [2]) # 2 > 1
-#         self.assertEqual(num_eat_num([1, 2], 2), [2]) # 2 > 1
-#         self.assertEqual(num_eat_num([2, 1], -1), [2]) # 2 > 1
+    def test_two_elements(self):
+        self.assertEqual(num_eat_num([1, 2], 0), [1, 2]) # No iters -> unchanged
+        self.assertEqual(num_eat_num([1, 2], -1), [2]) # 2 > 1
+        self.assertEqual(num_eat_num([1, 2], 2), [2]) # 2 > 1
+        self.assertEqual(num_eat_num([2, 1], -1), [2]) # 2 > 1
         
-#     def test_two_elements_greater_rule(self):
-#         self.assertEqual(num_eat_num([1, 3], 0), [1, 3]) # No iters -> unchanged
-#         self.assertEqual(num_eat_num([1, 3], -1), [1]) # 3-2 = 1
-#         self.assertEqual(num_eat_num([1, 3], 1), [1]) # 3-2 = 1
-#         self.assertEqual(num_eat_num([1, 3], 2), [1]) # 3-2 = 1
-#         self.assertEqual(num_eat_num([3, 1], -1), [1]) # 3-2 = 1
+    def test_two_elements_greater_rule(self):
+        self.assertEqual(num_eat_num([1, 3], 0), [1, 3]) # No iters -> unchanged
+        self.assertEqual(num_eat_num([1, 3], -1), [1]) # 3-2 = 1
+        self.assertEqual(num_eat_num([1, 3], 1), [1]) # 3-2 = 1
+        self.assertEqual(num_eat_num([1, 3], 2), [1]) # 3-2 = 1
+        self.assertEqual(num_eat_num([3, 1], -1), [1]) # 3-2 = 1
         
-#     def test_inheritance_property(self):
-#         self.assertEqual(num_eat_num([1, 3, 5], -1), [1]) # 1 eats then eats
-#         self.assertEqual(num_eat_num([1, 3, 5], 1), [1, 5]) # 1 eats
+    def test_inheritance_property(self):
+        self.assertEqual(num_eat_num([1, 3, 5], -1), [1]) # 1 eats then eats
+        self.assertEqual(num_eat_num([1, 3, 5], 1), [1, 5]) # 1 eats
         
-#     def test_small_endnum(self):
-#         self.assertEqual(num_eat_num([1, 3, 5, 2], -1), [2]) # 1 eats then eats then eaten
-#         self.assertEqual(num_eat_num([1, 3, 5, 2], 2), [1, 2]) # 1 eats then eats
+    def test_small_endnum(self):
+        self.assertEqual(num_eat_num([1, 3, 5, 2], -1), [2]) # 1 eats then eats then eaten
+        self.assertEqual(num_eat_num([1, 3, 5, 2], 2), [1, 2]) # 1 eats then eats
     
-#     def test_complex_cases(self):
-#         self.assertEqual(num_eat_num([1, 3, 5, 4, 2, 7], -1), [2]) # 2 can eat 7 as 5 inherited
-#         self.assertEqual(num_eat_num([1, 3, 6, 4, 2, 7], -1), [7]) # 2 can't eat 7 as no 5
-#         self.assertEqual(num_eat_num([1, 3, 5, 9, 7], -1), [9]) # left takes precedence
-#         self.assertEqual(num_eat_num([1, 3, 5, 7, 9], -1), [1])
-#         self.assertEqual(num_eat_num([9, 6, 5], -1), [9])
-#         self.assertEqual(num_eat_num([9, 6, 7], -1), [7])
+    def test_complex_cases(self):
+        self.assertEqual(num_eat_num([1, 3, 5, 4, 2, 7], -1), [2]) # 2 can eat 7 as 5 inherited
+        self.assertEqual(num_eat_num([1, 3, 6, 4, 2, 7], -1), [7]) # 2 can't eat 7 as no 5
+        self.assertEqual(num_eat_num([1, 3, 5, 9, 7], -1), [9]) # left takes precedence
+        self.assertEqual(num_eat_num([1, 3, 5, 7, 9], -1), [1])
+        self.assertEqual(num_eat_num([9, 6, 5], -1), [9])
+        self.assertEqual(num_eat_num([9, 6, 7], -1), [7])
         
 class myTests(unittest.TestCase):
     def test0(self):
@@ -429,19 +434,19 @@ class SentenceTests(unittest.TestCase):
     def test7(self):
         self.assertEqual(sentence_splitter('My email is test@example.com'), ['my', 'email', 'is', 'testexamplecom'])
         
-# class StringTests(unittest.TestCase):
-#     def test1(self):
-#         self.assertEqual(string_concat('dog'), 'ogg')
-#     def test2(self):
-#         self.assertEqual(string_concat('abc'), 'bcc')
-#     def test3(self):
-#         self.assertEqual(string_concat('a'), '')
-#     def test4(self):
-#         self.assertEqual(string_concat(''), '')
-#     def test5(self):
-#         self.assertEqual(string_concat('test'), 'essstttt')
-#     def test6(self):
-#         self.assertEqual(string_concat('hi'), 'ii')
+class StringTests(unittest.TestCase):
+    def test1(self):
+        self.assertEqual(string_concat('dog'), 'ogg')
+    def test2(self):
+        self.assertEqual(string_concat('abc'), 'bcc')
+    def test3(self):
+        self.assertEqual(string_concat('a'), '')
+    def test4(self):
+        self.assertEqual(string_concat(''), '')
+    def test5(self):
+        self.assertEqual(string_concat('test'), 'essttt')
+    def test6(self):
+        self.assertEqual(string_concat('hi'), 'i')
 
 if __name__ == '__main__':
     unittest.main(exit=True)
