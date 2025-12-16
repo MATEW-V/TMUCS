@@ -3,22 +3,15 @@
 # --------------------------------------------------------------
 
 '''
-
 This practice final is similar to your midterm and final exam in terms of format.
-
 It is supposed to help you get an idea of areas where you need to practice more.
-
-
 Fill in the functions below according to their descriptions. Test
 your code by running the file "practice_exam_tests.py"
 
 Make sure your code compiles before you finish the test. Syntax errors are bad! 
 Do NOT leave syntax errors in your code! This is VERY important.
 Always keep a clean copy that compiles even if you are working on something else.
-
-
 Do not rename your file. 
-
 
 '''
 
@@ -36,13 +29,19 @@ def to_binary(n):
 
     Hint: Repeatedly divide by 2 and collect remainders.
     '''
-    # your code here
+    rem=[]
+    if n<=1:
+      return str(n)
+    while n>=1:
+      rem.append(str(n%2))
+      n=n//2
+    res = "".join(reversed(rem))
+    return res
 
 # 2) 
 def sum_diff_merge(a, b):
     '''
     Assume that a and b are lists of integers of the SAME length.
-
     Create and return a new sorted list as follows:
       - For each index i, add TWO numbers to the result:
             1) a[i] + b[i]      (the sum at index i)
@@ -68,8 +67,12 @@ def sum_diff_merge(a, b):
         [2, 5, 5, 5, 7, 8, 9, 13]
 
     '''
-    # your code here
-
+    x,y=[],[]
+    for i in range(len(a)):
+      x.append(a[i]+b[i])
+      y.append(abs(a[i]-b[i]))
+    res=sorted(x+y)
+    return res
 
 # 3) 
 def count_occurrences(items, target):
@@ -77,26 +80,26 @@ def count_occurrences(items, target):
     Assume that items is a (possibly nested) list whose elements are either:
       - integers, or
       - lists with the same kind of structure.
-
     Return the number of times target appears anywhere inside items.
-
     You MUST solve this using recursion.
-
     Examples:
       count_occurrences([1, 2, 3], 2) returns 1
-
       count_occurrences([1, [2, 3, 2], 4], 2) returns 2
-
       count_occurrences([[2, 2], [3, [4, 2]]], 2) returns 3
-
       count_occurrences([], 5) returns 0
 
     Notes:
     - items can be nested to any depth.
     - You may assume there are no other data types besides int or list.
     '''
-    # your code here
-
+    count = 0
+    for i in items:
+        if i == target:
+            count += 1
+        elif isinstance(i, list):
+            count += count_occurrences(i, target)
+    
+    return count
 
 
 # 4)
@@ -122,9 +125,9 @@ def row_col_sums(mat):
         ([6, 15], [5, 7, 9])
 
     '''
-    # your code here
-
-
+    row=[sum(x) for x in mat]
+    what=[sum(col) for col in zip(*mat)]
+    return ((row,what))
 
 # 5)
 def invert_dict(d):
@@ -132,10 +135,8 @@ def invert_dict(d):
     Assume that d is a dictionary where:
       - keys are strings
       - values are integers
-
     Return a NEW dictionary that "inverts" d by grouping keys
     that share the same value.
-
     The returned dictionary should map each original value
     to a SORTED list of keys that had that value.
 
@@ -144,12 +145,19 @@ def invert_dict(d):
 
     You should return:
         {1: ["b", "d"], 2: ["a", "c"]}
-
-   
     '''
-    # your code here
-
-
+    inverted = {}
+    
+    for key, value in d.items():
+        if value not in inverted:
+            inverted[value] = []
+        inverted[value].append(key)
+    
+    # Sort the lists for each value
+    for value in inverted:
+        inverted[value].sort()
+    
+    return inverted
 # 6)
 def safe_int_divide(a, b):
     '''
@@ -172,7 +180,12 @@ def safe_int_divide(a, b):
     - You must use explicit type checking.
     - Do not print anything.
     '''
-    # your code here
+    if type(a)!=int or type(b)!=int:
+      raise TypeError
+    elif b == 0:
+      raise ValueError
+    else:
+      return a//b
 
    
 

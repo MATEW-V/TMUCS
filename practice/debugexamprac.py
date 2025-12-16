@@ -332,240 +332,61 @@ def maxValue(myList):
                     return (value,x,y)
 print(maxValue(sampleList))
 
-def condenseList(myList):
-    """
-    Given a 2D list, replace each sublist with an integer
-    representing the sum of the values in the sublist.
-    Note: you should be modifying the original list, not
-    making a new list. Be sure to test this function separately
-    from your other functions to make sure your modifications don't
-    create unexpected outputs for other functions using the list.
-    condenseList(sampleList) = [22, 19, 37]
-    """
-    pass
-
-def longestRow(myList):
-    """
-    Given a 2D list, return the row number of the sublist
-    with the most elements in it. If multiple sublists have
-    the same number of elements, return the lower index.
-    longestRow(sampleList) = 0
-    You should probably make your own test case for this one
-    """
-    pass
-
-def greatestColumn(myList):
-    """
-    Given a 2D list where all the rows have the same length,
-    return the column number with the greatest sum. If two
-    columns have the same sum, return the column with the
-    smaller column number. How would this function be 
-    different from the greatestRow function?
-    greatestColumn(myList) = 1
-    """
-    pass
-
-# def drop_char(in_str, char) :
-#     '''
-#     Remove every occurence of a character from the given string
-
-#     Example: 'apple pie' -> 'ale ie'
-
-#     Multiple ways to do this task:
-#     1. Build new word from valid chars, one at a time
-#     2. Upon finding char, concatenate around it
-#        'apple pie' -> 'a' + 'ple pie' = 'aple pie'
-#        'aple pie' -> 'a' + 'le pie' = 'ale pie' ...
-#     3. Use string method to split at char, rejoin
-#     4. Turn into list, detect instances of char, remove each
-#     5. Use all-in-one tool - string.replace('target','newchar')
-#     '''
-
-#     pass
-
-# # --------------------------------------------------------------
-# # Inputs
-# # --------------------------------------------------------------
-# phrase_1 = "abababababababababa" # 'a'
-# phrase_2 = "P l e a s e rem ove spaces from this." # ' '
-# phrase_3 = "You. don't. use. periods. like. this." # '.'
-# phrase_4 = "I really don't like the letter i" # 'i'
-# phrase_5 = "    oh     " # ' '
-# phrase_6 = "qwertyqwertyqwerty" # 'z'
-# # --------------------------------------------------------------
-# # Testing
-# # --------------------------------------------------------------
-# def test(answer, expected):
-#   if (answer == expected):
-#     result = "\033[92mPASS\033[0m"
-#   else:
-#     result = "\033[91mFAIL\033[0m"
-#   print("ANS:", answer, "Expected:", expected)
-#   print(result, "\n")
-
-# test(drop_char(phrase_1,'a'),'bbbbbbbbb')
-# test(drop_char(phrase_2,' '),'Pleaseremovespacesfromthis.')
-# test(drop_char(phrase_3, '.'),"You don't use periods like this")
-# test(drop_char(phrase_4, 'i'),"I really don't lke the letter ")
-# test(drop_char(phrase_5,' '),"oh")
-# test(drop_char(phrase_6, 'z'),'qwertyqwertyqwerty')
-
-# def tidal_waves(num_waves) :
-#     '''
-#     Given the number of waves, use the print method to produce
-#     a command line image of surfers riding waves.
-#     The water will consist of asterisks *. Each wave starts as
-#     a single *, and the amount increases up to the wave number.
-#     A surfer should appear at the peak of each wave
-    
-#     (>-|o represents a surfer
-
-#     ex: tidal_waves(4)
-
-#     *(>-|o     <-- first wave, only 1 water
-#     *          <-- start of second wave
-#     **(>-|o    <-- peak of second wave
-#     *          <-- start of third wave
-#     **
-#     ***(>-|o   <-- peak of third wave
-#     *          <-- start of third wave
-#     **
-#     ***
-#     ****(>-|o  <-- peak of fourth wave
-#     '''
-#     pass   
-
-# # --------------------------------------------------------------
-# # Testing
-# # --------------------------------------------------------------
-
-# tidal_waves(5)
-
-
-
 # #RECURSIOIN
-# def directional_max(numbers) :
-#     ''' 
-#     Given a list of numbers, recursively calculate the number of directional
-#     maximums. A directional maximum is a number that is greater than all numbers
-#     within a list either to the left or to the right of that number. Numbers at
-#     the beginning of the list are considered left maximum because there are no
-#     numbers to the left of it. Numbers at the end of the list are considered right
-#     maximum because there are no numbers to the right of it.
-#     Create a function that determines the total number of directional maximum numbers - 
-#     i.e. add the number of left maximums to the number of right maximums - and returns
-#     the total
-    
-#     Supporting functions:
-#     Create a left_max() and right_max() functions that take a list as input.
-#     For the left_max() function, if the last element is greater than the maximum
-#     value to the left of it, increase the quantity of left maximums and update the
-#     maximum value. The left_max() function returns 2 values - the number of left
-#     maximums in the list and the maximum value in the list.
 
-#     Example:
-#     > left_max([2])
-#     returns (1,2) < only one value, it is a left max; the max value is 2
-#     > left_max([2,5,3,7])
-#     The current maximum value is 5, and there are currently 2 left maximums.
-#     Compares 7 to the maximum value 5 - 7 is the new maximum value, now there are 3 left maximums.
-#     returns (3,7)
-
-#     The right_max() function behaves the same way, but compares the first value in the list
-#     to the values to the right of it.
-
-#     Example:
-#     directional_max( [4, 6, 2, 7] )
-
-#     left maximums:    *  *     *
-#                      [4, 6, 2, 7]
-#     right maximums:            *
-#     There are 3 left maximums and 1 right maximum, therefore the total number of
-#     directional maximums is 4
-#     '''
-    
-#     return
-
-# def left_max(numbers):
-#     return
-
-# def right_max(numbers):
-#     return
+def count_steps(distances) :
+    ''' 
+    let distances be an input list [x,y,z,...,n]
+    A runner is doing exercises, sprinting back and forth between multiple lines.
+    Starting at their starting position, they run x steps to get to the starting pylon,
+    then run x steps back to their starting position. Then the runner runs to the
+    second pylon, which is x + y steps away, then back to the starting position,
+    running another x + y steps. The runner continues this pattern until they have
+    reached the final pylon - note that they do not return to the starting position
+    upon reaching the final pylon.
+    Create a program that receives a list input containing the distances between each
+    pylon (x is the distance from the starting position to the first pylon) and outputs
+    the total number of steps taken by the runner throughout the whole exercise. Solve this
+    program recursively.
+    '''
+    if len(distances) == 0:
+        return 0
+    elif len(distances) == 1:
+        # Last segment: just go to the pylon
+        return distances[0]
+    else:
+        # Create new list where first two elements are combined
+        new_distances = [distances[0] + distances[1]] + distances[2:]
+        # Current trip: go to first pylon and back
+        return 2 * distances[0] + count_steps(new_distances)
         
-# # --------------------------------------------------------------
-# # Inputs
-# # --------------------------------------------------------------
-# input_1 = [1,2,3,4,5,6]
-# input_2 = [20, 21, 5, 4, 3, 21, 22]
-# input_3 = [20, 21, 5, 4, 3, 23, 22]
-# input_4 = [7, 9, 11, 13, 8, 6, 3]
-# input_5 = [50, 1, 1, 1, 0, 2, 1, 50]
-# input_6 = [50, 1, 1, 1, 55, 2, 1, 50]
+# --------------------------------------------------------------
+# Inputs
+# --------------------------------------------------------------
+input_1 = [1,2,3,4,5,6]
+input_2 = [20, 21, 5, 4, 3, 21, 22]
+input_3 = [20, 21, 5, 4, 3, 23, 22]
+input_4 = [7, 9, 11, 13, 8, 6, 3]
+input_5 = [50, 1, 1, 1, 0, 2, 1, 50]
+input_6 = [50, 1, 1, 1, 55, 2, 1, 50]
 
-# # --------------------------------------------------------------
-# # Testing
-# # --------------------------------------------------------------
-# def test(answer, expected):
-#   if (answer == expected):
-#     result = "\033[92mPASS\033[0m"
-#   else:
-#     result = "\033[91mFAIL\033[0m"
-#   print("ANS:", answer, "Expected:", expected)
-#   print(result, "\n")
+# --------------------------------------------------------------
+# Testing
+# --------------------------------------------------------------
+def test(answer, expected):
+  if (answer == expected):
+    result = "\033[92mPASS\033[0m"
+  else:
+    result = "\033[91mFAIL\033[0m"
+  print("ANS:", answer, "Expected:", expected)
+  print(result, "\n")
 
-# test(directional_max(input_1),7)
-# test(directional_max(input_2),4)
-# test(directional_max(input_3),5)
-# test(directional_max(input_4),8)
-# test(directional_max(input_5),2)
-# test(directional_max(input_6),4)
-
-# def count_steps(distances) :
-#     ''' 
-#     let distances be an input list [x,y,z,...,n]
-#     A runner is doing exercises, sprinting back and forth between multiple lines.
-#     Starting at their starting position, they run x steps to get to the starting pylon,
-#     then run x steps back to their starting position. Then the runner runs to the
-#     second pylon, which is x + y steps away, then back to the starting position,
-#     running another x + y steps. The runner continues this pattern until they have
-#     reached the final pylon - note that they do not return to the starting position
-#     upon reaching the final pylon.
-#     Create a program that receives a list input containing the distances between each
-#     pylon (x is the distance from the starting position to the first pylon) and outputs
-#     the total number of steps taken by the runner throughout the whole exercise. Solve this
-#     program recursively.
-#     '''
-
-#     return 0
-
-        
-# # --------------------------------------------------------------
-# # Inputs
-# # --------------------------------------------------------------
-# input_1 = [1,2,3,4,5,6]
-# input_2 = [20, 21, 5, 4, 3, 21, 22]
-# input_3 = [20, 21, 5, 4, 3, 23, 22]
-# input_4 = [7, 9, 11, 13, 8, 6, 3]
-# input_5 = [50, 1, 1, 1, 0, 2, 1, 50]
-# input_6 = [50, 1, 1, 1, 55, 2, 1, 50]
-
-# # --------------------------------------------------------------
-# # Testing
-# # --------------------------------------------------------------
-# def test(answer, expected):
-#   if (answer == expected):
-#     result = "\033[92mPASS\033[0m"
-#   else:
-#     result = "\033[91mFAIL\033[0m"
-#   print("ANS:", answer, "Expected:", expected)
-#   print(result, "\n")
-
-# test(count_steps(input_1),91)
-# test(count_steps(input_2),664)
-# test(count_steps(input_3),670)
-# test(count_steps(input_4),441)
-# test(count_steps(input_5),846)
-# test(count_steps(input_6),1231)
+test(count_steps(input_1),91)
+test(count_steps(input_2),664)
+test(count_steps(input_3),670)
+test(count_steps(input_4),441)
+test(count_steps(input_5),846)
+test(count_steps(input_6),1231)
 
 # def decrease_distance(Joe_step, Mark_step):
 #   ''' Joe and Mark are on a staircase, and they are both on different steps.
