@@ -6,7 +6,6 @@ car["year"]="2025"
 
 del car["model"]
 
-print(car)
 
 animals=["cat","dog","cat","bird","dog","cat","fish"]
 
@@ -18,7 +17,6 @@ def animcount(list):
             animdict.update({i:count})
             count+=1
     return(animdict) #ts sucks fix it
-print(animcount(animals))
 
 def countdown(n):
     if n<1:
@@ -40,3 +38,9 @@ def fib(n):
         return(0)
     else:
         return(fib(n-1)+fib(n-2))
+a=108
+b=2
+m=4
+for i in range(10000):
+    m=m-((m**8)/(a+m**8)*m)+b
+print(m)
