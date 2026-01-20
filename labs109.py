@@ -158,5 +158,30 @@ def safe_squares_rooks(n,rooks):
 # def words_with_given_shape(words, shape):  //uses words_sorted.txt do later
 #     pass
 
-def is_left_handed(pips):
-    pass
+def can_balance(items):
+    if len(items)==1:
+        return 0
+    
+    for i in range(len(items)):
+        lt=0
+        rt=0
+        for j in range(i):#checks leftside and appends
+            dist=i-j
+            lt+=items[j]*dist
+        for j in range(i+1,len(items)):
+            dist=j-i
+            rt+=items[j]*dist #torque adder weight
+        if lt == rt: #checka
+            return i
+    return -1 #checks thru i and if none found returns -1
+
+def josephus(n,k):
+    crew = list(range(1, n + 1))
+    x=[]
+    y=0
+    while crew:
+        y=(y+k-1)%len(crew) #circlular how
+        x.append(crew.pop(y))
+    return x
+
+
