@@ -31,34 +31,75 @@ public class LabTwo
         System.out.println(Arrays.toString(b1));
     }
 
-
     public static int[] everyOther(int[] a) 
     {
-        int[] res = { 0 };
-
+        int len = a.length/2;
+        if (a.length%2!=0) len++;
+            int[] res = new int[(len)];
+        int x = 0;
+        for (int i=0; i<a.length; i++) {
+            if (i%2==0) {
+                res[x]=a[i];
+                x++;
+            }
+        }
         return res;
     }
-    
 
     public static int[][] createZigZag(int rows, int cols, int start) 
     {
-        int[][] res = { { 0 } };
+        int[][] res = new int[rows][cols];
 
+        for (int i = 0; i < rows; i++) {  
+            for (int j = 0; j < cols; j++) {  
+                if (i % 2 != 0) { 
+                    res[i][cols - 1 - j] = start;
+                } else {
+                    res[i][j] = start;
+                }
+                start++;
+            }
+        }
         return res;
     }
     
 
     public static void reverseAscendingSubarrays(int[] items) 
     {
-        
+        int start = 0;
+        for (int i=0; i<items.length;i++) {
+            if (i == items.length - 1 || items[i] >= items[i + 1]) {
+                int left = start;
+                int right = i;
+                while (left < right) {
+                    int temp = items[left];
+                    items[left] = items[right];
+                    items[right] = temp;
 
+                    left++;
+                    right--;
+                }
+                start = i+1;
+            }
+        }
     }
     
 
     public static String pancakeScramble(String text) 
     {
-        
-        return "-";
+        char[] chararr = text.toCharArray();
+        for (int i=0; i<chararr.length;i++) {
+            int left = 0;
+            int right = i;
+            while (left < right) {
+                char temp = chararr[left];
+                chararr[left]=chararr[right];
+                chararr[right]=temp;
+                left++;
+                right--;
+            }
+        }
+        return String.valueOf(chararr);
     }
 
 
