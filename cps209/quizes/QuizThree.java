@@ -15,8 +15,8 @@ public class QuizThree {
         Course cps383 = new Course("cps383");
         cps383.setYear(2027);
         cps383.setSem("fall");
-        cps383.setLabTime(17, 20);
-        cps383.setLecTime(16, 19);
+        cps383.setLabTime(17, 20); //overlap
+        cps383.setLecTime(16, 17); //overlap
         Course cps510 = new Course("cps510");
         cps510.setYear(2028);
         cps510.setSem("spring");
