@@ -1,3 +1,5 @@
+import java.lang.Character; 
+
 public class LabThree 
 {
     /*
@@ -17,18 +19,46 @@ public class LabThree
         to practice writing your own main() method. You won't always be
         given unit tests.
     */
-
+    
     public static void main(String args[])
     {
         String s = reverseVowels("Alex Ufkes");
         System.out.println(s);
+        System.out.println(reverseVowels("aegggui"));
+
     }
 
-    public static String reverseVowels(String text) 
-    {
-        
-        return "";
-    } 
+   public static String reverseVowels(String text) {
+    char[] textArr = text.toCharArray();
+    int left = 0, right = textArr.length - 1;
+    
+    while (left < right) {
+        if ("aeiouAEIOU".indexOf(textArr[left]) == -1) {
+            left++;
+        } else if ("aeiouAEIOU".indexOf(textArr[right]) == -1) {
+            right--;
+        } else {
+            char leftChar = textArr[left];
+            char rightChar = textArr[right];
+            
+            if (Character.isUpperCase(textArr[left])) {
+                textArr[left] = Character.toUpperCase(rightChar);
+            } else {
+                textArr[left] = Character.toLowerCase(rightChar);
+            }
+            if (Character.isUpperCase(textArr[right])) {
+                textArr[right] = Character.toUpperCase(leftChar);
+            } else {
+                textArr[right] = Character.toLowerCase(leftChar);
+            }
+            left++;
+            right--;
+        }
+    }
+    
+    return new String(textArr);
+}
+    
     
     /* RUNNING THE UNIT TESTS)
      *

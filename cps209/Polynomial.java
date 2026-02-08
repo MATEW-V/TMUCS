@@ -11,27 +11,44 @@ public class Polynomial
         file for instructions on how to run the unit tests. 
 
         Note that your official lab grade will be based on the proportion
-        of unit tests that you pass.        
+        of unit tests that you pass.    
     */
 
     private final int[] coeff;
     
     public Polynomial(int[] coefficients) 
-    {
-        
-        coeff = new int[1]; // Modify this
+    {   
+        int last = -1;
+        for (int i=coefficients.length-1; i>=0; i--) {
+            if (coefficients[i]!=0) {
+                last=i;
+                break;
+            }
+        }
+        if (last == -1) {
+            coeff = new int[]{0};
+        } else {
+            coeff = new int[last+1]; // Modify this -> size w/ourt trail 0s
+            for (int i=0; i<=last; i++) {
+                coeff[i]=coefficients[i];
+            }
+        }
     }
     
     public int getDegree() 
     {
-        
-        return -1; // Modify this
+        return coeff.length-1;
     }
     
     public int getCoefficient(int k) 
     {
-       
-        return 0; // Modify this
+        if (k<0) {
+            return 0;
+        } else if (k<=coeff.length-1) {
+            return coeff[k];
+        } else {
+            return 0;
+        }
     }
     
     /* RUNNING THE UNIT TESTS)
