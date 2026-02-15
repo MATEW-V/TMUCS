@@ -27,7 +27,7 @@ public class Polynomial
         if (last == -1) {
             coeff = new int[]{0};
         } else {
-            coeff = new int[last+1]; // Modify this -> size w/ourt trail 0s
+            coeff = new int[last+1];
             for (int i=0; i<=last; i++) {
                 coeff[i]=coefficients[i];
             }
@@ -49,7 +49,24 @@ public class Polynomial
             return 0;
         }
     }
+
+    public long evaluate(int x) {
+        int cdeg = getDegree();
+        int eval = 0;
+        for (int i=0; i<coeff.length-1; i++) {
+            eval += getCoefficient(i)*x**(cdeg-i);
+        }
+        return -1L;
+    }
     
+    public Polynomial add(Polynomial other) {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "";
+    }
     /* RUNNING THE UNIT TESTS)
      *
      * Evaluate your code by using the following commands in the terminal.
