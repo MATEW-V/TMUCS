@@ -10,7 +10,7 @@ public class Problem2
          * This method takes an integer and "rotates" it to the
          * right by one digit. This means that the right-most digit
          * of the integer becomes the left-most. For example, the
-         * integer 12345 would beecome 51234. If the right-most 
+         * integer 12345 would become 51234. If the right-most 
          * digit is zero, it is removed: 12340 becomes 1234.
          *
          * To run the unit tests for this problem, use the following commands in the terminal:
@@ -20,12 +20,14 @@ public class Problem2
          * 
          * This method is worth 5 marks.
          */
-        String numStr = Integer.toString(number);
-        String[] res = new String[numStr.length()-1];
-        for (int i = 0; i<numStr.length(); i++) {
-            
-        }
-        return -1;
+        String numStr = ""+number;
+        if (numStr.length()<=1) return number;
+
+        char lastDigit = numStr.charAt(numStr.length()-1);
+        if (lastDigit=='0') return Integer.parseInt(numStr.substring(0,numStr.length()-1));
+
+        String rotated = lastDigit+numStr.substring(0,numStr.length()-1);
+        return Integer.parseInt(rotated);
      }
 
     public static int rotateUntilEven(int number)
@@ -50,6 +52,13 @@ public class Problem2
          * This method is worth 10 marks.
          */
               
-        return -11;
+        if (number == 0) return 0;
+        int nRot = 0;
+        while(number>0) {
+            if (number % 2 == 0) return nRot;
+            nRot++;
+            number /= 10;
+        }
+        return -1;
     }
 }
