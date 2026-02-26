@@ -78,11 +78,7 @@ public class Book implements Comparable<Book>
         } else if (other.bPrice > this.bPrice) {
             return -1;
         } else {
-            if (other.bTitle==this.bTitle) {
-                return 0;
-            } else {
-                return this.bTitle.compareTo(other.bTitle);
-            }
+            return this.bTitle.compareTo(other.bTitle);
         }
     }
 

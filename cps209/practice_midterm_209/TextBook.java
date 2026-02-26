@@ -25,18 +25,19 @@ public class TextBook extends Book
     /* TO BE COMPLETED */
     // Declare instance variables here (if necessary). 
     // Ensure they are all private.
-   
+    private String courseCode;
     /* TO BE COMPLETED */
     public TextBook(String title, double basePrice, String courseCode) 
     {
         // The constructor for TextBook should initialize instance 
         // variables (if necessary) and call the superclass constructor.
-        
+        super(title, basePrice);
+        this.courseCode = courseCode;
     }
 
     /* COMPLETE SETTER AND GETTER BELOW */ 
-    public String getCourseCode() { return null; }
-    public void setCourseCode(String courseCode) { }    
+    public String getCourseCode() { return this.courseCode; }
+    public void setCourseCode(String courseCode) { this.courseCode = courseCode;}    
     
     /* TO BE COMPLETED */
     @Override
@@ -45,7 +46,7 @@ public class TextBook extends Book
         // Textbooks have a 20% markup on the base price.
         // This markup should be added before the 13% tax.
 
-        return -1;
+        return super.getBasePrice() * 1.20 * 1.13;
     }
 
     /* TO BE COMPLETED */
@@ -55,8 +56,11 @@ public class TextBook extends Book
         // Two textbooks are considered equal if they have the same 
         // title and the same course code. Price is not considered for 
         // textbook equality. 
+        if (obj == this) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        TextBook other = (TextBook) obj;
+        return (super.getTitle().equals(other.getTitle()) && courseCode.equals(other.getCourseCode()));
         
-        return false;
     }
 
     /* TO BE COMPLETED */
@@ -68,6 +72,6 @@ public class TextBook extends Book
         // For example: CSC1009:TextBook[The Great Gatsby@$10.00]
         // The price should be formatted to 2 decimal places.
 
-        return "";
+        return this.courseCode+":Text"+super.toString();
     }
 }
