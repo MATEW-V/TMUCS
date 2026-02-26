@@ -1,0 +1,34 @@
+This folder contains several .java files, and their 
+associated unit tests. Specifications for each method 
+can be found in the java files themselves, above 
+the method signature. Just fill them in. The total
+number of marks for each question are also given.
+
+Files in this folder:
+Book.java 
+BookTest.java
+TextBook.java
+TextBookTest.java
+CollectionQ1.java
+CollectionQ1Test.java
+Problem1.java
+Problem1Test.java
+Problem2.java
+Problem2Test.java
+
+Commands for are given for running the tests in each
+Java file, just like your labs.
+
+Additionally, make sure you fill in your full name and 
+student ID in *ALL* Java files.
+
+/* 
+ * FULL NAME:  <your full name here>
+ * STUDENT ID: <your student ID here>
+ */
+
+Save your work often. When you are done, make sure your 
+work is saved, and close VScode. You don't have to submit
+anywhere, just save your work locally.
+ 
+Good luck!
