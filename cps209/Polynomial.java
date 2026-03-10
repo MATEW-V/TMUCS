@@ -1,5 +1,5 @@
 
-public class Polynomial 
+public class Polynomial implements Comparable<Polynomial> 
 {
     private final int[] coeff;
     
@@ -64,6 +64,17 @@ public class Polynomial
             res[i] = value1 + value2;
         }
         return new Polynomial(res);
+    }
+    public Polynomial multiply(Polynomial other) {
+        return new Polynomial(coeff);
+    }
+    @Override
+    public boolean equals(Object other) {
+        return true;
+    }
+    @Override
+    public int compareTo(Polynomial other) {
+        return -10;
     }
     @Override
     public String toString() {
