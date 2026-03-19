@@ -22,33 +22,30 @@ public class AccessCountArrayList<E> extends ArrayList<E>
      * of unit tests that you pass.  
      *
      */
+    private int count = 0;
 
     @Override
     public E get(int idx) 
     {
-        // Your code here
-        
-        return null;
+        count++;
+        return super.get(idx);
     }
     
     @Override
     public E set(int idx, E value) 
     {
-       // Your code here
-        
-       return null;
+       count++;
+       return super.set(idx, value);
     }
     
     public int getAccessCount() 
     {
-        // Your code here
-
-        return -1;
+        return this.count;
     }
 
     public void resetCount()
     {
-        // Your code here
+        count = 0;
 
     } 
 

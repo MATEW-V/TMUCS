@@ -34,7 +34,8 @@ public class SpySet<E> extends HashSet<E>
      * Declare instance variables as needed. They should be private.
      */ 
     
-
+    private int count = 0;
+    private int dupes = 0;
     
     /* 
      * Write a constructor for SpySet that has an int parameter.
@@ -44,8 +45,7 @@ public class SpySet<E> extends HashSet<E>
      */
     public SpySet(int N) 
     {  
-
-
+    dupes = N;
     }
 
     /* 
