@@ -34,8 +34,8 @@ public class SpySet<E> extends HashSet<E>
      * Declare instance variables as needed. They should be private.
      */ 
     
-    private int count = 0;
-    private int dupes = 0;
+    private int dupCount = 0;
+    private int dupLimit = 0;
     
     /* 
      * Write a constructor for SpySet that has an int parameter.
@@ -45,7 +45,7 @@ public class SpySet<E> extends HashSet<E>
      */
     public SpySet(int N) 
     {  
-    dupes = N;
+        dupLimit = N;
     }
 
     /* 
@@ -60,8 +60,21 @@ public class SpySet<E> extends HashSet<E>
     @Override 
     public boolean add(E elem)
     {
-        
-        return false; // modify this
+        // Check if the element already exists in the set
+        if (super.contains(elem)) {
+            dupCount++;
+            
+            if (dupCount >= dupLimit) {
+                super.clear();
+                dupCount = 0;
+                return false;
+            }
+            
+            return false;
+        } else {
+            super.add(elem);
+            return true;
+        }
     }
 
     /*
@@ -72,8 +85,8 @@ public class SpySet<E> extends HashSet<E>
     @Override 
     public void clear()
     {
-        
-
+        super.clear();
+        dupCount = 0;
     }
 
     /* 
@@ -81,8 +94,7 @@ public class SpySet<E> extends HashSet<E>
      */
     public int getDuplicateCount ()
     {
-
-        return -1; // modify this
+        return dupCount;
     }
 
     /* 
@@ -90,8 +102,7 @@ public class SpySet<E> extends HashSet<E>
      */
     public int getDuplicateLimit ()
     {
-        
-        return -1; // modify this    
+        return dupLimit;    
     }
 
     /* RUNNING THE UNIT TESTS)
@@ -113,4 +124,3 @@ public class SpySet<E> extends HashSet<E>
      */
 
 }
-
