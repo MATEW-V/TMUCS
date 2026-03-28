@@ -66,15 +66,41 @@ public class Polynomial implements Comparable<Polynomial>
         return new Polynomial(res);
     }
     public Polynomial multiply(Polynomial other) {
-        return new Polynomial(coeff);
+    int newDegree = this.getDegree() + other.getDegree();
+    int[] res = new int[newDegree + 1];
+    
+    for (int i = 0; i <= this.getDegree(); i++) {
+        for (int j = 0; j <= other.getDegree(); j++) {
+            res[i + j] += this.getCoefficient(i) * other.getCoefficient(j);
+        }
     }
-    @Override
+    return new Polynomial(res);
+    }
+
     public boolean equals(Object other) {
+        if (!(other instanceof Polynomial)) return false;
+        if (other == this) return true;
+        Polynomial oth = (Polynomial) other;
+        
+        if (this.getDegree() != oth.getDegree()) return false;
+        
+        for (int i = 0; i <= this.getDegree(); i++) {
+            if (this.getCoefficient(i) != oth.getCoefficient(i)) {
+                return false;
+            }
+        }
         return true;
     }
     @Override
     public int compareTo(Polynomial other) {
-        return -10;
+        if (this.getDegree() > other.getDegree()) return 1;
+        if (this.getDegree() < other.getDegree()) return -1;
+        
+        for (int i = this.getDegree(); i >= 0; i--) {
+            if (this.getCoefficient(i) > other.getCoefficient(i)) return 1;
+            if (this.getCoefficient(i) < other.getCoefficient(i)) return -1;
+        }
+        return 0;
     }
     @Override
     public String toString() {
@@ -93,11 +119,11 @@ public class Polynomial implements Comparable<Polynomial>
             int absCoeff = Math.abs(coeffS);
 
             if (i == 0) {
-                sb.append(absCoeff);  // Always show constant term coefficient
+                sb.append(absCoeff); 
             } else if (i == 1) {
-                sb.append(absCoeff + "x");  // Always show coefficient for linear term
+                sb.append(absCoeff + "x"); 
             } else {
-                sb.append(absCoeff + "x^" + i);  // Always show coefficient for higher terms
+                sb.append(absCoeff + "x^" + i);  
             }
         }
         return sb.length() == 0 ? "0" : sb.toString();
