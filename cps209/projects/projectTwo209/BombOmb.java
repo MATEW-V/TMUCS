@@ -51,6 +51,10 @@ public class BombOmb {
     }
     
     public void update() {
+        update(null, null);
+    }
+    
+    public void update(Diffuser leftDiffuser, Diffuser rightDiffuser) {
         if (isExploding) {
             explosionTimer++;
             return;
@@ -65,6 +69,10 @@ public class BombOmb {
         if (y <= 0) { y = 0; dy = -dy; }
         if (y + SIZE >= height) { y = height - SIZE; dy = -dy; }
         
+        // Bounce off diffusers
+        if (leftDiffuser != null) bounceOffDiffuser(leftDiffuser);
+        if (rightDiffuser != null) bounceOffDiffuser(rightDiffuser);
+        
         // Leg animation
         if (++step >= 20) {
             step = 0;
@@ -72,6 +80,37 @@ public class BombOmb {
         }
         
         if (--fuseTimer <= 0) explode();
+    }
+    
+    private void bounceOffDiffuser(Diffuser diffuser) {
+        Rectangle bombBounds = getBounds();
+        Rectangle diffuserBounds = diffuser.getBounds();
+        
+        if (bombBounds.intersects(diffuserBounds)) {
+            // Calculate overlap
+            int overlapLeft = bombBounds.x + bombBounds.width - diffuserBounds.x;
+            int overlapRight = diffuserBounds.x + diffuserBounds.width - bombBounds.x;
+            int overlapTop = bombBounds.y + bombBounds.height - diffuserBounds.y;
+            int overlapBottom = diffuserBounds.y + diffuserBounds.height - bombBounds.y;
+            
+            // Find smallest overlap
+            int minOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapTop, overlapBottom));
+            
+            // Push bomb out and reverse direction
+            if (minOverlap == overlapLeft) {
+                x = diffuserBounds.x - SIZE;
+                dx = -Math.abs(dx);
+            } else if (minOverlap == overlapRight) {
+                x = diffuserBounds.x + diffuserBounds.width;
+                dx = Math.abs(dx);
+            } else if (minOverlap == overlapTop) {
+                y = diffuserBounds.y - SIZE;
+                dy = -Math.abs(dy);
+            } else if (minOverlap == overlapBottom) {
+                y = diffuserBounds.y + diffuserBounds.height;
+                dy = Math.abs(dy);
+            }
+        }
     }
     
     public void updateInsideContainer(int containerX, int containerY, int containerWidth, int containerHeight) {
