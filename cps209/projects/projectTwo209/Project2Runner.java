@@ -6,8 +6,8 @@ import java.awt.event.*;
  
 public class Project2Runner extends JPanel implements ActionListener, MouseListener, MouseMotionListener {
     /*
-     * Name: <name>
-     * Student ID: <id>
+     * Name: Matthew Vuong
+     * Student ID: 501348434
      * 
      ******** Project Description ********
      * 
@@ -50,6 +50,7 @@ public class Project2Runner extends JPanel implements ActionListener, MouseListe
         addMouseMotionListener(this);
         
         game = new GameLogic();
+        game.initSwingComponents(this);
         game.initDiffusers();
         
         timer = new Timer(16, this);
@@ -66,17 +67,15 @@ public class Project2Runner extends JPanel implements ActionListener, MouseListe
         for (BombOmb bomb : game.getBombs()) {
             bomb.draw(g, bomb == game.getDraggedBomb());
         }
-        game.drawUI(g);
         if (game.isGameEnded()) {
             game.drawGameOver(g);
-        } else {
-            game.drawInstructions(g);
-        }
+        } 
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         game.update();
+        game.updateSwingUI();  
         repaint();
     }
 
@@ -94,24 +93,10 @@ public class Project2Runner extends JPanel implements ActionListener, MouseListe
     
     public static void main(String[] args) {
         JFrame frame = new JFrame("Sort or Splode");
-        Project2Runner game = new Project2Runner();
-    
-        frame.add(game);
+        frame.add(new Project2Runner());
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        
-        frame.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_R && game.game.isGameEnded()) {
-                    game.game.restart();
-                }
-            }
-        });
-        
-        game.setFocusable(true);
-        game.requestFocusInWindow();
     }
 }

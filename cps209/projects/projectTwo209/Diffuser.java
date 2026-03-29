@@ -19,8 +19,7 @@ public class Diffuser {
     // Colors
     private static final Color PINK_BG = new Color(255, 182, 193, 100);
     private static final Color BLACK_BG = new Color(30, 30, 35, 100);
-    private static final Color YELLOW_BORDER = Color.YELLOW;
-    private static final Color INNER_BORDER = new Color(255, 255, 100);
+    private static final Color BORDER = Color.YELLOW;
     
     public Diffuser(int x, int y, int type) {
         this.x = x;
@@ -48,13 +47,12 @@ public class Diffuser {
         g2d.setColor(type == TYPE_PINK ? PINK_BG : BLACK_BG);
         g2d.fillRect(x, y, WIDTH, HEIGHT);
         
-        // Draw borders
-        g2d.setColor(YELLOW_BORDER);
+        // Draw border
+        g2d.setColor(BORDER);
         g2d.setStroke(new BasicStroke(4));
         g2d.drawRect(x, y, WIDTH, HEIGHT);
         
         g2d.setStroke(new BasicStroke(1));
-        g2d.setColor(INNER_BORDER);
         g2d.drawRect(x + 2, y + 2, WIDTH - 4, HEIGHT - 4);
         
         // Draw collected bombs
@@ -83,24 +81,10 @@ public class Diffuser {
         collectedBombs.add(bomb);
         return true;
     }
-    
-    public void clear() {
-        collectedBombs.clear();
-    }
-    
-    public int getCount() {
-        return collectedBombs.size();
-    }
-    
-    public int getType() {
-        return type;
-    }
-    
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, WIDTH, HEIGHT);
-    }
-    
-    public ArrayList<BombOmb> getCollectedBombs() {
-        return collectedBombs;
-    }
+
+    public int getCount() { return collectedBombs.size(); }
+
+    public Rectangle getBounds() { return new Rectangle(x, y, WIDTH, HEIGHT); }
+
+    public ArrayList<BombOmb> getCollectedBombs() { return collectedBombs; }
 }

@@ -6,7 +6,7 @@ import java.util.Random;
 public class BombOmb {
     // Constants
     public static final int SIZE = 35;
-    public static final int MAX_FUSE = 150;
+    public static final int MAX_FUSE = 250;
     
     // Position and movement
     private int x, y;
@@ -31,8 +31,6 @@ public class BombOmb {
     private static final Color BLACK_HIGHLIGHT = new Color(70, 70, 80);
     private static final Color FUSE_COLOR = new Color(139, 69, 19);
     private static final Color FEET_COLOR = new Color(255, 220, 100);
-    private static final Color EXPLOSION_RING = new Color(255, 69, 0);
-    private static final Color EXPLOSION_INNER = new Color(255, 140, 0);
     
     public BombOmb(int startX, int startY, int playWidth, int playHeight) {
         this.x = startX;
@@ -55,10 +53,7 @@ public class BombOmb {
     }
     
     public void update(Diffuser leftDiffuser, Diffuser rightDiffuser) {
-        if (isExploding) {
-            explosionTimer++;
-            return;
-        }
+        if (isExploding) { explosionTimer++; return; }
         
         x += dx;
         y += dy;
@@ -114,11 +109,8 @@ public class BombOmb {
     }
     
     public void updateInsideContainer(int containerX, int containerY, int containerWidth, int containerHeight) {
-        if (isExploding) {
-            explosionTimer++;
-            return;
-        }
-        
+        if (isExploding) { explosionTimer++; return; }
+
         x += dx;
         y += dy;
         
@@ -229,10 +221,10 @@ public class BombOmb {
         int size = SIZE + explosionTimer * 8;
         int alpha = Math.max(0, 255 - explosionTimer * 20);
         
-        g2d.setColor(new Color(EXPLOSION_RING.getRed(), EXPLOSION_RING.getGreen(), EXPLOSION_RING.getBlue(), alpha));
+        g2d.setColor(new Color(255, 69, 0, alpha));
         g2d.fillOval(x - (size - SIZE)/2, y - (size - SIZE)/2, size, size);
         
-        g2d.setColor(new Color(EXPLOSION_INNER.getRed(), EXPLOSION_INNER.getGreen(), EXPLOSION_INNER.getBlue(), alpha));
+        g2d.setColor(new Color(255, 140, 0, alpha));
         g2d.fillOval(x - (size - SIZE)/3, y - (size - SIZE)/3, size * 2/3, size * 2/3);
         
         g2d.setColor(Color.RED);
@@ -252,42 +244,18 @@ public class BombOmb {
         isExploding = true;
         explosionTimer = 0;
     }
-    
-    public boolean isExploding() {
-        return isExploding;
-    }
-    
-    public boolean isExplosionFinished() {
-        return isExploding && explosionTimer >= 20;
-    }
-    
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, SIZE, SIZE);
-    }
-    
+
+    public boolean isExploding() { return isExploding; }
+    public boolean isExplosionFinished() { return isExploding && explosionTimer >= 20; }
+    public Rectangle getBounds() { return new Rectangle(x, y, SIZE, SIZE); }
     public boolean contains(int mouseX, int mouseY) {
-        return getBounds().contains(mouseX, mouseY);
+        return mouseX >= x && mouseX <= x + SIZE && mouseY >= y && mouseY <= y + SIZE;
     }
-    
-    public int getFuseTimer() {
-        return fuseTimer;
-    }
-    
-    public void setFuseTimer(int fuseTimer) {
-        this.fuseTimer = fuseTimer;
-    }
-    
-    public boolean isPink() {
-        return isPink;
-    }
-    
-    public int getX() {
-        return x;
-    }
-    
-    public int getY() {
-        return y;
-    }
+    public int getFuseTimer() { return fuseTimer; }
+    public void setFuseTimer(int fuseTimer) { this.fuseTimer = fuseTimer; }
+    public boolean isPink() { return isPink; }
+    public int getX() { return x; }
+    public int getY() { return y; }
     
     public void setPosition(int x, int y) {
         this.x = x;
