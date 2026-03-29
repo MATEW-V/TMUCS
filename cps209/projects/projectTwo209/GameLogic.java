@@ -18,6 +18,7 @@ public class GameLogic {
     private int dragOffsetX, dragOffsetY;
 
     // Swing UI components
+    private JProgressBar spawnRateBar;
     private JLabel diffusedLabel;
     private JLabel timeLabel;
     private JLabel spawnRateLabel;
@@ -29,9 +30,9 @@ public class GameLogic {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
     public static final int MAX_GAME_TIME_SECONDS = 90;
-    public static final int MIN_SPAWN_DELAY = 20;
-    public static final int MAX_SPAWN_DELAY = 55;
-    public static final int MAX_BOMBS = 10;
+    public static final int MIN_SPAWN_DELAY = 20;  // fastest spawn rate (frames between spawns)
+    public static final int MAX_SPAWN_DELAY = 55;  // slowest spawn rate (frames between spawns)
+    public static final int MAX_BOMBS = 10;         // max bombs on screen at once
     public static final int SPAWN_ZONE_WIDTH = 120;
     public static final int SPAWN_ZONE_HEIGHT = 40;
 
@@ -64,40 +65,47 @@ public class GameLogic {
         timeLabel.setBounds(WIDTH - 130, 10, 120, 25);
         panel.add(timeLabel);
 
-        spawnRateLabel = new JLabel("Spawn Rate: 1.1/sec");
+        // Label and progress bar for spawn rate (fills as difficulty increases)
+        spawnRateLabel = new JLabel("Spawn Rate");
         spawnRateLabel.setForeground(Color.CYAN);
         spawnRateLabel.setFont(new Font("Arial", Font.PLAIN, 10));
-        spawnRateLabel.setBounds(WIDTH - 130, 35, 130, 20);
+        spawnRateLabel.setBounds(WIDTH - 130, 35, 90, 15);
         panel.add(spawnRateLabel);
+        // wouldve been a label but swing req sigh
+        spawnRateBar = new JProgressBar(0, 100);
+        spawnRateBar.setValue(0);
+        spawnRateBar.setForeground(Color.CYAN);
+        spawnRateBar.setBackground(new Color(30, 30, 30));
+        spawnRateBar.setBorderPainted(false);
+        spawnRateBar.setBounds(WIDTH - 130, 50, 120, 10);
+        panel.add(spawnRateBar);
 
         // --- Instruction Labels (bottom) ---
         instructionsLabel1 = new JLabel("Drag bombs into their Diffusers. Incorrect sorting will explode the entire batch.");
         instructionsLabel1.setForeground(Color.WHITE);
         instructionsLabel1.setFont(new Font("Arial", Font.PLAIN, 11));
-        instructionsLabel1.setBounds(10, HEIGHT - 65, 750, 15);
+        instructionsLabel1.setBounds(10, HEIGHT - 70, 750, 15);
         panel.add(instructionsLabel1);
 
         instructionsLabel2 = new JLabel("Score is calculated at the end of the game, either when an explosion happens or time runs out.");
         instructionsLabel2.setForeground(Color.WHITE);
         instructionsLabel2.setFont(new Font("Arial", Font.PLAIN, 11));
-        instructionsLabel2.setBounds(10, HEIGHT - 50, 780, 15);
+        instructionsLabel2.setBounds(10, HEIGHT - 55, 780, 15);
         panel.add(instructionsLabel2);
 
-        // --- Restart Button (hidden until game ends) ---
+        // Restart button — hidden during gameplay, shown on game over screen
         restartButton = new JButton("Restart");
         restartButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 100, 120, 35);
         restartButton.setFont(new Font("Arial", Font.BOLD, 16));
         restartButton.setForeground(Color.BLACK);
         restartButton.setBackground(Color.YELLOW);
         restartButton.setFocusPainted(false);
-        restartButton.setVisible(false); // hidden during gameplay
+        restartButton.setVisible(false);
         restartButton.addActionListener(e -> restart());
         panel.add(restartButton);
     }
 
-    /**
-     * Call this each game tick (from your update loop) to keep labels current.
-     */
+    // Called every game tick to keep Swing labels and progress bar in sync with game state
     public void updateSwingUI() {
         if (diffusedLabel == null) return; // not yet initialised
 
@@ -106,13 +114,20 @@ public class GameLogic {
 
         diffusedLabel.setText("Diffused: " + diffusedCount);
         timeLabel.setText("Time: " + formatTime(getRemainingSeconds()));
-        spawnRateLabel.setText(String.format("Spawn Rate: %.1f/sec", getCurrentSpawnRate()));
+
+        // Map current spawn rate to 0-100 for the progress bar
+        spawnRateLabel.setText("Spawn Rate");
+        float maxRate = 60.0f / MIN_SPAWN_DELAY;
+        float minRate = 60.0f / MAX_SPAWN_DELAY;
+        int progress = (int)(((getCurrentSpawnRate() - minRate) / (maxRate - minRate)) * 100);
+        spawnRateBar.setValue(Math.min(100, Math.max(0, progress)));
 
         // Show restart button only when game has ended
         restartButton.setVisible(!gameActive);
     }
 
     public void initDiffusers() {
+        // Place diffusers on the left and right sides, vertically centered
         int diffuserY = (HEIGHT - Diffuser.HEIGHT) / 2;
         leftDiffuser = new Diffuser(20, diffuserY, Diffuser.TYPE_PINK);
         rightDiffuser = new Diffuser(WIDTH - Diffuser.WIDTH - 20, diffuserY, Diffuser.TYPE_BLACK);
@@ -121,6 +136,7 @@ public class GameLogic {
     public void update() {
         if (!gameActive) return;
 
+        // End game if time limit reached
         if ((System.currentTimeMillis() - startTime) / 1000 >= MAX_GAME_TIME_SECONDS) {
             endGame("time");
             return;
@@ -131,27 +147,32 @@ public class GameLogic {
         if (leftDiffuser != null) leftDiffuser.update();
         if (rightDiffuser != null) rightDiffuser.update();
 
+        // Update each bomb, check for explosions
         for (int i = 0; i < bombs.size(); i++) {
             BombOmb bomb = bombs.get(i);
             if (bomb != draggedBomb) bomb.update(leftDiffuser, rightDiffuser);
 
+            // If a fuse fully ran out, end the game
             if (bomb.isExploding() && bomb.getFuseTimer() <= 0) {
                 endGame("fuse");
                 return;
             }
 
+            // Remove bombs whose explosion animation has finished
             if (bomb.isExplosionFinished()) {
                 bombs.remove(i);
                 i--;
             }
         }
 
+        // Spawn a new bomb once the delay counter is reached
         if (++spawnCounter >= getCurrentSpawnDelay() && bombs.size() < MAX_BOMBS) {
             spawnCounter = 0;
             spawnBomb();
         }
     }
 
+    // Returns frames between spawns — decreases over time to ramp up difficulty
     private int getCurrentSpawnDelay() {
         float progress = Math.min(1.0f, (float) gameTime / ((MAX_GAME_TIME_SECONDS * 2 / 3) * 60));
         return MAX_SPAWN_DELAY - (int) (progress * (MAX_SPAWN_DELAY - MIN_SPAWN_DELAY));
@@ -163,18 +184,21 @@ public class GameLogic {
 
     private void spawnBomb() {
         int bombWidth = BombOmb.SIZE;
+        // Spawn from the center zone at the top or bottom of the screen
         int zoneX = (WIDTH / 2) - (SPAWN_ZONE_WIDTH / 2);
         boolean spawnAtTop = Math.random() < 0.5;
 
         int x = zoneX + (int) (Math.random() * (SPAWN_ZONE_WIDTH - bombWidth));
         int y = (spawnAtTop ? 5 : HEIGHT - SPAWN_ZONE_HEIGHT + 5);
 
+        // Clamp to screen bounds
         x = Math.max(0, Math.min(x, WIDTH - bombWidth));
         y = Math.max(0, Math.min(y, HEIGHT - bombWidth));
 
         bombs.add(new BombOmb(x, y, WIDTH, HEIGHT));
     }
 
+    // Find which bomb the player clicked on (search top to bottom so topmost is picked)
     public void startDrag(int mouseX, int mouseY) {
         if (!gameActive) return;
 
@@ -189,6 +213,7 @@ public class GameLogic {
         }
     }
 
+    // Move the dragged bomb with the mouse, clamped to screen bounds
     public void drag(int mouseX, int mouseY) {
         if (!gameActive || draggedBomb == null) return;
 
@@ -197,6 +222,7 @@ public class GameLogic {
         draggedBomb.setPosition(newX, newY);
     }
 
+    // On release, check if bomb was dropped on a diffuser and whether it matches
     public void release(int mouseX, int mouseY) {
         if (!gameActive || draggedBomb == null) return;
 
@@ -205,9 +231,11 @@ public class GameLogic {
 
         if ((onLeft && leftDiffuser.canDiffuse(draggedBomb)) ||
             (onRight && rightDiffuser.canDiffuse(draggedBomb))) {
+            // Correct diffuser — add bomb to it and remove from main list
             Diffuser target = onLeft ? leftDiffuser : rightDiffuser;
             if (target.diffuse(draggedBomb)) bombs.remove(draggedBomb);
         } else if (onLeft || onRight) {
+            // Wrong diffuser — trigger game over
             endGame("wrong", onLeft ? leftDiffuser : rightDiffuser);
         }
 
@@ -227,6 +255,7 @@ public class GameLogic {
         int finalScore = 0;
 
         if (reason.equals("wrong") && wrongDiffuser != null) {
+            // Only count bombs from the correct diffuser; explode the wrong one's batch
             if (wrongDiffuser != leftDiffuser && leftDiffuser != null) {
                 finalScore += leftDiffuser.getCount() * 10;
                 diffusedCount += leftDiffuser.getCount();
@@ -239,6 +268,7 @@ public class GameLogic {
                 if (!bomb.isExploding()) bomb.explode();
             }
         } else {
+            // Time or fuse — count all diffused bombs and explode everything
             if (leftDiffuser != null) {
                 finalScore += leftDiffuser.getCount() * 10;
                 diffusedCount += leftDiffuser.getCount();
@@ -257,10 +287,12 @@ public class GameLogic {
 
         score = finalScore;
 
+        // Explode any remaining bombs still on the field
         for (BombOmb bomb : bombs) {
             if (!bomb.isExploding()) bomb.explode();
         }
 
+        // Set the message shown on the game over screen
         switch (reason) {
             case "time":
                 gameEndMessage = "TIME'S UP!\nYou diffused " + diffusedCount + " bombs!\nFinal Score: " + score;
@@ -274,6 +306,7 @@ public class GameLogic {
         }
     }
 
+    // Reset all game state back to initial values for a fresh round
     public void restart() {
         bombs.clear();
         score = 0;
@@ -303,6 +336,7 @@ public class GameLogic {
         drawZone(g2d, zoneX, HEIGHT - SPAWN_ZONE_HEIGHT, "BOTTOM SPAWN");
     }
 
+    // Draws a single semi-transparent spawn zone rectangle with a centered label
     private void drawZone(Graphics2D g2d, int x, int y, String label) {
         g2d.setColor(new Color(100, 100, 100, 150));
         g2d.fillRect(x, y, SPAWN_ZONE_WIDTH, SPAWN_ZONE_HEIGHT);
@@ -317,6 +351,7 @@ public class GameLogic {
         g2d.drawString(label, labelX, y + 20);
     }
 
+    // Draws the game over overlay with the end message centered on screen
     public void drawGameOver(Graphics g) {
         g.setColor(new Color(0, 0, 0, 200));
         g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -328,6 +363,7 @@ public class GameLogic {
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 24));
 
+        // Split message by newline and draw each line centered
         String[] lines = gameEndMessage.split("\n");
         int y = HEIGHT / 2 - 20;
         for (String line : lines) {

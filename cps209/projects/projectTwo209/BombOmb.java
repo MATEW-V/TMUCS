@@ -41,14 +41,14 @@ public class BombOmb {
         this.random = new Random();
         this.isPink = random.nextBoolean();
         
-        // Random starting direction
+        // Random starting direction on spawn
         this.dx = random.nextInt(3) + 2;
         this.dy = random.nextInt(3) + 2;
         if (random.nextBoolean()) dx = -dx;
         if (random.nextBoolean()) dy = -dy;
     }
     
-    public void update() {
+    public void update() { 
         update(null, null);
     }
     
@@ -76,7 +76,7 @@ public class BombOmb {
         
         if (--fuseTimer <= 0) explode();
     }
-    
+    //bounce off diffusers like it was a wall logic
     private void bounceOffDiffuser(Diffuser diffuser) {
         Rectangle bombBounds = getBounds();
         Rectangle diffuserBounds = diffuser.getBounds();
@@ -107,7 +107,7 @@ public class BombOmb {
             }
         }
     }
-    
+    //insude diffuser logic (basically same)
     public void updateInsideContainer(int containerX, int containerY, int containerWidth, int containerHeight) {
         if (isExploding) { explosionTimer++; return; }
 
@@ -124,11 +124,11 @@ public class BombOmb {
             leftFootUp = !leftFootUp;
         }
     }
-    
+    //draw fucntion base
     public void draw(Graphics g) {
         draw(g, false);
     }
-    
+    //overloaded draw when holding plus if explode
     public void draw(Graphics g, boolean isDragging) {
         if (isExploding) {
             drawExplosion(g);
@@ -144,7 +144,7 @@ public class BombOmb {
             drawBomb(g2d, x, y, SIZE);
         }
     }
-    
+    //bomb graphics method 
     private void drawBomb(Graphics2D g2d, int drawX, int drawY, int drawSize) {
         // Body
         g2d.setColor(isPink ? PINK_BODY : BLACK_BODY);
@@ -172,7 +172,7 @@ public class BombOmb {
             drawFeet(g2d, drawX, drawY, drawSize);
         }
     }
-    
+    //fuse drawing method
     private void drawFuse(Graphics2D g2d, int drawX, int drawY, int drawSize) {
         int fuseHeight = Math.max(3, (int)((double)fuseTimer / MAX_FUSE * (drawSize / 2)));
         int fuseX = drawX + drawSize/2 - (drawSize / 12);
@@ -188,7 +188,7 @@ public class BombOmb {
             g2d.fillOval(fuseX, fuseY - fuseHeight + (drawSize / 16), drawSize / 6, drawSize / 8);
         }
     }
-    
+    //moving feet
     private void drawFeet(Graphics2D g2d, int drawX, int drawY, int drawSize) {
         int footWidth = drawSize / 4;
         int footHeight = drawSize / 6;
@@ -206,7 +206,7 @@ public class BombOmb {
             g2d.fillRoundRect(drawX + drawSize - footOffset - footWidth, drawY + drawSize - footRaise, footWidth, footHeight, 4, 4);
         }
     }
-    
+    //small indicator when time is low
     private boolean shouldSpark() {
         if (fuseTimer < MAX_FUSE / 3) {
             return System.currentTimeMillis() % 150 < 75;
@@ -215,7 +215,7 @@ public class BombOmb {
         }
         return System.currentTimeMillis() % 500 < 250;
     }
-    
+    //explooosion
     private void drawExplosion(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         int size = SIZE + explosionTimer * 8;
@@ -244,7 +244,7 @@ public class BombOmb {
         isExploding = true;
         explosionTimer = 0;
     }
-
+    //getters 
     public boolean isExploding() { return isExploding; }
     public boolean isExplosionFinished() { return isExploding && explosionTimer >= 20; }
     public Rectangle getBounds() { return new Rectangle(x, y, SIZE, SIZE); }
