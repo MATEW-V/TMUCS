@@ -1,3 +1,4 @@
+package labs;
 public class BigO extends Polynomial {
     
     private String category;

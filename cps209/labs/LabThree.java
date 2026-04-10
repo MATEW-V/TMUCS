@@ -1,3 +1,4 @@
+package labs;
 import java.lang.Character; 
 
 public class LabThree 
