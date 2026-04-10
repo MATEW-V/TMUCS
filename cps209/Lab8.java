@@ -1,3 +1,9 @@
+import java.io.*;
+import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
 public class Lab8
 {
 
@@ -15,8 +21,16 @@ public class Lab8
      */
     public static double divideNumbers(int numerator, int denominator) 
     {
+        if (denominator == 0) {
+            if (numerator == 0) {
+                throw new UnsupportedOperationException();
+            }
+            throw new ArithmeticException();
+        }
+        double nn = (double) numerator;
+        double dd = (double) denominator;
 
-        return 0.0;
+        return nn/dd;
     }
 
     /**
@@ -34,12 +48,26 @@ public class Lab8
      * The InvalidTemperatureException should be created as a static
      * nested class inside this Lab8 class.
      */
-    public static double convertCelsiusToFahrenheit(String celsiusTemp) 
-    {
-
-        return 0.0;
+    public static class InvalidTemperatureException extends RuntimeException {
+        public InvalidTemperatureException() {
+            super("Temperature is below absolute zero (-273.15C)");
+        }
     }
+    public static double convertCelsiusToFahrenheit(String celsiusTemp) throws InvalidTemperatureException
+    {
+        if (celsiusTemp == null) {
+            throw new NumberFormatException("Input cannot be null");
+        }
+        double celsius = Double.parseDouble(celsiusTemp);
 
+        if (celsius < -273.15)
+        {
+            throw new InvalidTemperatureException();
+        }
+
+        return (9.0 / 5.0) * celsius + 32;
+    }
+    
     /**
      * This method should open the plain text file named fname_in and 
      * return, as a String, lines first to last, inclusive.
@@ -55,12 +83,36 @@ public class Lab8
      * 
      * You may assume that fname_in is a file that exists.
      */
-    public static String file_slice(String fname_in, int first, int last) 
-    {
+   public static String file_slice(String fname_in, int first, int last) {
+    // Check negative values FIRST
+    if (first < 0 || last < 0) throw new NegativeArraySizeException();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(fname_in));
+            String line;
+            int count = 0;
+            String res = "";
+            
+            while ((line = in.readLine()) != null) {  // Read in loop condition
+                if (count >= first && count <= last) {
+                    if (res.length() > 0) res += "\n";  // Add newline before appending
+                    res += line;
+                }
+                count++;
+                // Optional optimization: stop if we've passed 'last'
+                if (count > last) break;
+            }
+            in.close();
+            // Check if first line exists after reading 
+            if (last<first) throw new NegativeArraySizeException();
+            if (first >= count) throw new IndexOutOfBoundsException();
+           
+            return res;
         
-        return "";
+        } catch (IOException e) {
+            System.out.println("Wasd");
+            return "";
+        }
     }
-
 
     /**
      * This method should open the plain text file named fname_in and 
@@ -76,10 +128,41 @@ public class Lab8
      * If fname_out fails to open, you should still return the 
      * reversed contents as a String as usual.
      */
-    public static String rev_rev_file(String fname_in, String fname_out) 
+    public static String rev_rev_file(String fname_in, String fname_out)
     {
-
-        return "";
+        if (fname_in == null) return "ERROR: NO INPUT";
+        String line;
+        String res = "";
+        ArrayList<String> cont = new ArrayList<String>();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(fname_in));
+            while ((line = in.readLine()) != null) {
+                String sbline = new StringBuilder(line).reverse().toString();
+                cont.add(sbline);
+            }
+            in.close();
+            Collections.reverse(cont);
+            for (int i = 0; i < cont.size(); i++) {
+                if (i > 0) res += "\n";
+                res += cont.get(i);
+            }
+            try {
+                if (fname_out!=null) {
+                Writer out = new FileWriter(fname_out);
+                for (int i = 0; i < cont.size(); i++) {
+                    String s = cont.get(i);
+                    out.write(s);
+                    if (i < cont.size() - 1) {
+                        out.write("\n");
+                    }
+                }
+                out.close();
+            }
+            } catch (IOException e) {}
+        } catch (IOException e) {
+            return "ERROR: NO INPUT";
+        }
+        return res;
     }
 
     /* RUNNING THE UNIT TESTS)
