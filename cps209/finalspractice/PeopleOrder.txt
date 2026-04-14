@@ -1,0 +1,9 @@
+James 0
+Megan 1
+Paul 1
+Jan 0
+Daniel 3
+Keith 7
+Stacy -1
+Jessica 2
+Samantha Five
