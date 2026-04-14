@@ -24,6 +24,7 @@ public class FileIO {
                     }  
                     word="";
             }}
+            in.close();
             Iterator<String> it = words.iterator();
             while (it.hasNext()) {
                 String s = it.next();

@@ -1,9 +1,7 @@
 package finalspractice;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -25,8 +23,6 @@ import java.util.Scanner;
 // print out the results of the valid operation groups. If given a valid
 // --- and the following data is invalid, print an error.
 
-
-
 public class IOHandling  {
 
     static Scanner getfile(String filename) throws FileNotFoundException{
@@ -35,34 +31,34 @@ public class IOHandling  {
     }
 
     static void parseFile(String filename) throws IOException {
-        int a = 0;
-        int b = 0;
-        int c = 0;
         try {
             Scanner text = getfile(filename);
-            String line1=text.nextLine();
-            if (line1.equals("---")) {
-                a = text.nextInt();
-                text.nextLine();
-            } //error print if not then skip to next ---
-            String op = text.nextLine();
-            if (op.equals("+")) {
-                b = text.nextInt();
-                text.nextLine();
-                c = a+b;
-            } else if (op.equals("-")) {
-                b = text.nextInt();
-                text.nextLine();
-                c = a-b;
-            } else {
-                throw new IOException("incorect formatting");
-            }
-            System.out.println(a+op+b+"="+c);
+            while (text.hasNext()) {
+                try {
+                    String check = text.next();
+                if (check.equals("---")) {
+                    int int1 = text.nextInt();
+                    text.nextLine();
+                    String op = text.nextLine();
+                    int int2 = text.nextInt();
 
-        } catch (FileNotFoundException e) {
+                    if (op.equals("+")) {
+                        System.out.println("" + int1 + "+" + int2 + "=" + (int1+int2));
+                    } else if (op.equals("+")) {
+                        System.out.println("" + int1 + "-" + int2 + "=" + (int1-int2));
+                    }
+
+                    if (text.hasNext()){
+                            text.nextLine();
+                    }
+                }
+                } catch (Exception e) { //nested try catch
+                    System.out.println("invalid format");
+                }
+            }            
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 
     public static void main(String[] args) throws IOException{
