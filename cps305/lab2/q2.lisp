@@ -1,16 +1,15 @@
 #|
-Write a recursive function called PAIRWISE-DIFFERENCE that takes 
-two lists of numbers of equal length and returns a new list where 
-each element is the result of subtracting the element in the second 
-list from the corresponding element in the first list. 
+Write a tail-recursive function called COUNT-NEGATIVES 
+that takes a list of numbers as its argument and returns 
+the count of strictly negative numbers (< 0) in the list. 
+Maintain tail-recursion by using an auxiliary helper 
+function with LABELS or an optional parameter. 
 |#
 
-(defun PAIRWISE-DIFFERENCE (a b)
-    (if (null a) 
-        NIL ;true
-        (cons (- (first a) (first b)) ;false
-            (PAIRWISE-DIFFERENCE(rest a) (rest b)
-        ))))
-
-;(load "~/cps305/lab2-assign-v3/q1.lisp")
-;(PAIRWISE-DIFFERENCE (LIST 10 20 30) (LIST 1 2 3)) 
+(defun COUNT-NEGATIVES(x &optional (acc 0))
+  (if (null x)
+      acc
+      (if (> 0 (car x))
+           (COUNT-NEGATIVES (cdr x) (+ 1 acc))
+           (COUNT-NEGATIVES (cdr x) acc)
+           )))
