@@ -7,6 +7,12 @@ input list. If lst is empty, return ().
 |#
 
 (defun RUNNING-PRODUCT (x)
-  
-  
+  (let* (
+         (res)
+         (acc 1))
+    (dolist (num x (nreverse res))
+      (setf acc (* acc num)) 
+      (push acc res)))
 )
+
+;(load "cps305/lab3/q2.lisp")
