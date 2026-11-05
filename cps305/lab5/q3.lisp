@@ -14,7 +14,6 @@
   (vector nil 0))
 
 (defun arr-remove-head (lst)
-  
   (let ((head-idx (aref lst 0)))
     (unless (null head-idx)
       (let* ((head-cell (aref *cell-array* head-idx))
@@ -22,3 +21,5 @@
         (setf (aref lst 0) next-idx)
         (decf (aref lst 1)))))
   lst)
+
+;(load "/home/matew/GITHUB/TMUCS/cps305/lab5/q3.lisp")
