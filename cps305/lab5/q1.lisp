@@ -1,0 +1,6 @@
+(defun SEARCH-ITEM-INDEX (lst target)
+    (let ((idx 0))
+      (dolist (item lst)
+        (if (equalp item target)
+            (return idx)
+        (incf idx)))))

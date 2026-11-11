@@ -1,0 +1,25 @@
+(defparameter *array-size* 100)
+(defparameter *cell-array* (make-array *array-size* :initial-element nil))
+(defparameter *free-index* 0)
+
+(defun allocate-cell (data next-index)
+  (if (>= *free-index* *array-size*)
+      (error "Backing array is full.")
+      (let ((index *free-index*))
+        (setf (aref *cell-array* index) (vector data next-index))
+        (incf *free-index*)
+        index)))
+
+(defun make-empty-list ()
+  (vector nil 0))
+
+(defun arr-remove-head (lst)
+  (let ((head-idx (aref lst 0)))
+    (unless (null head-idx)
+      (let* ((head-cell (aref *cell-array* head-idx))
+             (next-idx (aref head-cell 1)))
+        (setf (aref lst 0) next-idx)
+        (decf (aref lst 1)))))
+  lst)
+
+;(load "/home/matew/GITHUB/TMUCS/cps305/lab5/q3.lisp")
