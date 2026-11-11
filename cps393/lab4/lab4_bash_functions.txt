@@ -1,0 +1,100 @@
+CPS393 Lab4 -- Bash Functions
+
+The questions in this lab are courtesy of Dr. Woit.
+All credit for these question go to her.
+
+#################################################
+   
+Part I)
+
+a)  In the file lab4_func1.sh, define a function called
+    casefold which is similar to Python's. It prints its 
+    input string with all the uppercase letters changed
+    to lowercase. The input string is $1; remaining 
+    arguments are ignored.
+    
+    There are many solutions. One uses echo, tr and pipes.  
+    
+    For example: 
+    > casefold "aBc    DEFhgi  j88Kl-m    Z"
+    abc    defhgi  j88kl-m    z
+    > casefold "aBcD       87    3   -&@PP "
+    abcd       87    3   -&@pp
+    >
+    
+b)  In the file lab4_func2.sh, define a function called
+    capitalize which is similar to Python's. It prints 
+    its input string with the first character changed to 
+    uppercase and the remaining characters to lowercase. 
+    Non-alphas are unchanged. If the first character is 
+    not a lowercase letter, it is unchanged. This function 
+    may call casefold as needed. The input string is $1; 
+    remaining arguments are ignored.
+    
+    There are many solutions.  One uses pipes and sed. 
+    
+    For example:
+    > capitalize "hI thERE 88evEryon2E"
+    Hi there 88everyon2e
+    > capitalize "8I   T   Here"
+    8i t   here
+    >
+
+c)  In the file lab4_func3.sh, define a function called
+    title which is similar to Python's. It prints its input 
+    string with the first letter after any non-alpha 
+    character changed to uppercase and remaining letters 
+    changed to lowercase. This function may call 
+    capitalize and/or casefold appropriately. The input 
+    string is $1; remaining arguments are ignored.
+       
+    For example:
+    > title " thIS is a TiTle   Example"
+     This Is A Title   Example
+    > title "hi the 2nd b3b3b3 and 3g3g3g"
+    Hi The 2Nd B3B3B3 And 3G3G3G
+    >
+
+   
+#################################################
+
+Part II) 
+
+    In a file called lab4_func4.sh, write a function named 
+    repeat which takes 2 arguments.
+    The function repeats string $1 $2 times. 
+    
+    For example:
+    > repeat abc 3
+    abcabcabc
+    > repeat x 1
+    x
+    > repeat abc 0
+   
+    > repeat ' a b' 3
+     a b a b a b
+    >
+    
+    You might find this command useful: seq $2
+    It prints integers from 1 to $2, one per line.
+
+    You may use any algorithm you wish. There are many
+    different approaches you could take, and many of them
+    are *dramatically* different from one another.
+    
+    For added challenge, try solving this problem in two
+    or more completely different ways.
+ 
+
+#################################################
+      
+Submission)
+
+    Submit your four shell programs (lab4_func1/2/3/4)
+    using the submit-cps393aufkes command:
+    
+       submit-cps393aufkes lab4_func1.sh
+       submit-cps393aufkes lab4_func2.sh
+       submit-cps393aufkes lab4_func3.sh
+       submit-cps393aufkes lab4_func4.sh
+    

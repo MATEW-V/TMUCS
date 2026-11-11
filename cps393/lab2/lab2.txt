@@ -1,0 +1,28 @@
+part 1: 
+1. ls *e*
+2. ls ???????
+3. ls ????????.*
+4. ls *.???
+5. ls *.[[:alnum:][:alnum:][:alnum:]]
+6. ls *tst*
+7. ls A*-*
+8. ls *.ex{,s}
+9. ls !(*.c|*.txt)
+10. ls *.[2-8]*([0-9])
+
+part 2:
+1. grep 'NULL' fname
+2. grep "dog.*cat\|cat.*dog" fname
+3. grep '^print' fname
+4. grep '^#define' fname
+5. grep ';$' fname
+6. egrep '^(int|char).*;$' fname 
+
+part 3:
+a) 
+find . -type f -mtime -1 > temp.txt
+grep "tst" temp.txt 
+rm temp.txt
+
+b) 
+find / -type d 2>&1 | grep -i "permission" | wc -l

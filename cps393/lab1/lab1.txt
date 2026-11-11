@@ -1,0 +1,32 @@
+part 1:
+1)
+mkdir cps393
+cd cps393
+mkdir lab1
+cd ..
+
+2)
+cp /urs/courses/cps393/aufkes/labs/lab1/lab1_shell_usage.txt cps393/lab1
+
+3)
+ls /home/mevuong/cps393/lab1
+
+4)
+ls cps393/lab1
+
+5)
+cd cps393/lab1
+cat lab1_shell_usage.txt
+
+part 3: 
+a)
+chmod ug+x script.sh
+chmod 754 script.sh
+
+b)
+chmod g+w,o-rx project/
+chmod 770 project/
+
+c)
+chmod u=rwx,g=rw,o=r data.txt
+chmod 764 data.txt

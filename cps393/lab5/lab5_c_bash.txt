@@ -1,0 +1,63 @@
+CPS393 Lab5 -- C basics, command line arguments
+
+###########################################################
+
+Description)
+
+In this lab, you will practice basic control flow problems 
+in C. The purpose of this lab is to get familiar with C
+syntax.
+
+
+Question 1) In a file called lab5_q1.c, do the following:
+
+Print the following 2D patterns on the screen according to 
+the value entered. Use scanf() to read an integer.
+
+For example, if the user enters 5, the following patterns 
+should be printed:
+
+1 * * * *    5 * * * *    * * * * 1    * * * * 5
+* 2 * * *    * 4 * * *    * * * 2 *    * * * 4 * 
+* * 3 * *    * * 3 * *    * * 3 * *    * * 3 * *
+* * * 4 *    * * * 2 *    * 4 * * *    * 2 * * *
+* * * * 5    * * * * 1    5 * * * *    1 * * * * 
+
+The patterns can be printed vertically - they don't have 
+to be side by side as they appear above.
+
+
+Question 2) In a file called lab5_q2.c, do the following:
+
+We can redirect input into a C program just as we did 
+with bash programs. If stdin is redirected, then scanf
+will read from the new source. If stdout is redirected, 
+printf will write to the new destination.
+
+Write a program that reads integers one at a time from
+stdin until hitting EOF. 
+
+Print to stdout the number of values that were read this 
+way, and print their average as a floating point number 
+to two decimal places.
+
+
+Question 3) In a file called lab5_q3.c, do the following:
+
+Write a C program that reads an integer, n, from stdin. 
+Your program should print out the prime factorization 
+of that integer. Use Google to learn what prime 
+factorization is if you're not familar.
+
+For example, if the input is 72, you should print out
+the following (in this precise format):
+
+2*2*2*3*3=72
+
+Submission)
+
+Submit your source files using the submit command:
+
+    submit-cps393aufkes lab5_q1.c
+    submit-cps393aufkes lab5_q2.c
+    submit-cps393aufkes lab5_q3.c

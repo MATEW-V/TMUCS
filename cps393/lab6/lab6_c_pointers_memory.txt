@@ -1,0 +1,92 @@
+CPS393 Lab6 -- Pointers & Memory in C
+
+###########################################################
+
+Description)
+
+Several functions signatures are given below, along with a
+description of what each function should do. You must 
+implement these functions. Do NOT change the signatures.
+
+You may place all of these functions in a single source
+file called lab6_funcs.c
+
+F1)
+
+void swap (int *x, int *y)
+
+The swap function swaps the contents of two address, pointed 
+to by x and y. Do NOT just swap the pointer values, you must 
+dereference.
+
+F2)
+
+void min_max (int *arr, int len, int *min, int *max)
+
+This function finds the minimum and maximum values in the 
+array arr, and stores them at the addresses min and max.
+
+F3)
+
+void mmm (int *arr, int len, float *mean, int *median, int *mode)
+
+This function is very similar to the previous question. It 
+finds the mean, median, and mode values in the array arr, 
+and stores them at the addresses mean, median, and mode.
+
+F4)
+
+char* my_str_cat (char *s1, char *s2)
+
+This function should concatenate strings s1 and s2, and
+return a new string. Do not modify s1 or s2. Be sure to 
+dynamically allocate the new string, and include the null 
+character at the end. You may not use the strcat function. 
+The point is to do it yourself.
+
+F5)
+
+int* find_first (int *arr, int len, int value)
+
+This functions searches the array arr for value. Return a
+pointer to the location in the array where value first
+occurs. If value is not in arr, return NULL. Do NOT return 
+the index.
+
+F6)
+
+int* vec_add (int *v1, int len1, int *v2, int len2)
+
+This function performs element-wise addition of two integer
+arrays. The arrays can be different lengths, so the length
+of the resulting array will be determined by the longer of
+the two. Be sure to dynamically allocate the result. An 
+example is below.
+
+v1 = {1, 2, 3, 4, 5}
+v2 = {6, 7, 8}
+result = {7, 9, 11, 4, 5}
+
+F7)
+
+int* merge (int *a1, int *a2, int len)
+
+Assume that a1 and a2 are sorted arrays that have the same
+length. This function merges the two sorted arrays into a 
+single, dynamically allocated, third array. Return the merged
+array. Note that this is the merge operation from merge sort.
+
+F8) 
+
+int* kth_largest (int *arr, int len, int k)
+
+This functions finds the kth largest element in the array arr.
+For example, if k is 3, you're looking for the 3rd largest 
+element. Return a pointer to this element. Your function 
+should NOT modify the original array. 
+
+Submission)
+
+Submit your source file using the submit command:
+
+    submit-cps393aufkes lab6_funcs.c

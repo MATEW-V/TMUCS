@@ -1,0 +1,107 @@
+CPS393 Lab1 -- Basic shell navigation and file creation 
+
+#################################################
+
+PART 0) Using the scp command
+
+scp, or "secure copy", can be used to copy files from a remote
+location to your local machine. Its usage is as follows:
+
+scp <source file> <destination file>
+
+The difference between this command and cp, is that the source
+or destination can be a remote path. In the example below, I'm
+copying the lab0 file (lab0_getting_started_ssh.txt) to my local 
+working directory:
+
+scp aufkes@moon.cs.torontomu.ca:/usr/courses/cps393/aufkes/labs/lab0/lab0_getting_started_ssh.txt .
+
+This command can be used on your own local machines to copy
+files from moon, or to moon. This command is presented for your
+information only. There is nothing to submit for this question.
+
+#################################################
+
+PART I) Shell basics & file creation
+
+Give the sequence of commands that you would issue from your 
+home directory to do the following, in the order given: 
+
+1.  Create a directory called cps393. In this directory, create
+    a subdirectory called lab1.
+2.  Copy /usr/courses/cps393/aufkes/labs/lab1/lab1_shell_usage.txt
+    into your lab1 directory.
+3.  List the contents of directory lab1 using an absolute path. 
+4.  List the contents of directory lab1 again using a relative path
+    from your home directory 
+5.  Navigate into your lab1 directory, and display the contents
+    of lab1_shell_usage.txt
+    
+(When you're done this question, you may reorganize your HOME
+directory any way you see fit)
+
+#################################################    
+    
+PART II) Editing text files
+
+From your home directory, using a text editor of your choice, 
+create a file called name.txt that contains the following 
+information, in the following format:
+
+NAME:  Matthew Vuong
+TMUID: 501348434
+EMAIL: Matthew.vuong@torontomu.ca
+
+You may use any text editor you wish, as long as it's being done 
+from the shell. Nano and pico are more modern (and easier to use),
+vi and vim are old school. If you don't already have a preference,
+nano is recommended.
+
+Whatever you pick, make sure you get comfortable with it. 
+These are the editors you'll have access to on the tests.
+
+Once you've created your name.txt file, upload it to your 
+submission dropbox for this course using the following command:
+
+    submit-cps393aufkes name.txt
+    
+If you've done it right, you should see a message that resembles
+the following:
+
+    "XXX bytes copied"
+
+#################################################
+
+PART III) Changing file permissions using CHMOD
+
+Give TWO chmod commands that accomplish each of the following. One chmod 
+command can use symbolic notation, the other should use octal notation.
+
+ a) You have a file named script.sh with current permissions -rw-r--r--. 
+    How would you grant execute permission to the owner and group while 
+    keeping read-only access for others? 
+ b) A directory "project/" has permissions drwxr-xr-x. Give the group to 
+    permission to create and delete files in this directory but prevent 
+    others from accessing it. Leave the owner perms as-is.
+ c) A file data.txt needs permissions where the owner can read, write, and 
+    execute, the group can read and write, and others can only read. 
+    
+#################################################
+
+SUBMISSION)
+
+Answer questions 1 and 3 above in a single plain text file called lab1.txt
+Format your text file in a way that is readable, with each answer clearly 
+separated from the others. 
+
+Submit your text file using the following submission command:
+
+    submit-cps393aufkes lab1.txt
+    
+You should have already submitted question 2 using:
+
+    submit-cps393aufkes name.txt
+    
+We will use this submit command throughout the entire course. 
+If you submit a file with the same name more than once, earlier submissions 
+will be overwritten. Ensure that your latest submission is the correct one.

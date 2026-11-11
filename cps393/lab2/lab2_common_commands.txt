@@ -1,0 +1,76 @@
+CPS393 Lab2 -- Practicing common Unix commands
+
+#################################################    
+    
+PART I) ls & globbing
+
+For each of the questions below, use the touch command to create 
+a sufficient number of files to properly test each question.
+
+Give a command to list all filenames in the current directory that:
+
+1.  Contain the letter "e" 
+2.  Have a total of 7 letters and no extension 
+3.  Are 8 characters long with any extension
+4.  Have 3 letter extensions 
+5.  Have 3 letter alpha-numeric extensions
+6.  Contain "tst" somewhere in the name
+7.  Start with the letter "A" and contained a dash (-)
+8.  End in .ex with an optional s at the end
+9.  Are not C or text files (do not end in .c or .txt)
+10. End in a . followed by a digit from 2-8 followed zero or more digits.
+
+#################################################
+
+PART II) grep
+
+For the questions below, a "word" is a sequence of characters flanked by
+spaces or punctuation. A "string" is any sequence of characters.
+
+Give a grep command to do each of the following:
+
+1.  List all lines in fname containing the string "NULL". 
+2.  List all lines in fname containing the word "dog" and "cat". 
+3.  List all lines in fname containing the string "print" at the beginning of a line. 
+4.  List all lines in fname containing the word "#define" at the beginning of a line.
+5.  List all lines in fname containing a semicolon ; at the end of the line.
+6.  List all lines in fname containing lines that start with the word "int" or "char"
+    and end in a semicolon.
+    
+#################################################
+
+PART III) combining commands
+
+Write a command or series of commands to solve the two problems below:
+
+a)  Look at the man pages for "find" to determine what the option "-mtime" 
+    does in the find command. Then, figure out a sequence of commands 
+    (involving a find, a temp file, and a grep) to display those files in the 
+    current directory whose contents were changed within the last 24 hours 
+    and whose names contain the string "tst". 
+   
+    Hint 1: Output of find becomes input to grep. How can you do this? Do not
+    use a pipe.
+    Hint 2: You should create a series of files to test your command. Some
+    that have been modified, some that have not. Some that contain "tst", 
+    some that do not.
+
+b)  When the "find" command tries to look in a directory you do not have 
+    permission to read, it prints an error message on stderr (try this 
+    out to see what happens). If you redirect stderr to stdout, then "find" 
+    will print both on stdout and you can pipe all the output. 
+   
+    Use find, pipes, grep and wc to print the *number* of directories that 
+    "find" cannot read in your filesystem. 
+
+#################################################
+
+Submission)
+
+Answer questions 1-3 above in a single plain text file called lab2.txt
+Format your text file in a way that is readable, with each answer clearly 
+separated from the others. 
+
+Submit your text file using the following submission command:
+
+    submit-cps393aufkes lab2.txt

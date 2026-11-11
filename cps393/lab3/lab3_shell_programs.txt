@@ -1,0 +1,79 @@
+CPS393 Lab3 -- Shell Programs
+
+#################################################
+    
+Shell Program 1) lab3_prog1
+
+    Write a shell program called lab3_prog1.sh that lists the userids of all 
+    the people who have logged into moon on a particular day of the week. 
+    The day is supplied as a command-line argument to your shell program. 
+    
+    For example, if I ran your program as follows: ./lab3_prog1.sh Sun
+    then your program would give a list of userids of those people who have 
+    last logged into moon on a Sunday. No userid should be listed more than 
+    once, and userids should be listed in alphabetical order.
+    
+    Remember that the command-line argument is "$1" in your code. 
+
+    HINT 1: The following commands might come in handy:
+    - last, grep, cut, sort, uniq
+    HINT 2: Start by looking up what the 'last' command does
+    
+#################################################
+
+Shell Program 2) lab3_prog2   
+
+    Write a program called lab3_prog2.sh that expects one command line 
+    argument, the name of an input file. If the input argument is not 
+    a file, print "X is not a file" to stderr, where X is the argument’s 
+    name, and exit with a code of 1.
+
+    Assume each line in the input file contains some combination of words 
+    cat, dog, tac, god (tac and god being cat and dog backwards).
+
+    For each line in the file, count the number of cats (and tacs), the 
+    number of dogs (and gods). If there are more cats than dogs print MEOW 
+    to stdout. If there are more dogs than cats, print WOOF. If they are 
+    equal, print SAME.
+
+#################################################
+
+Shell Program 3) lab3_prog3    
+
+    Write a program called lab3_prog3.sh that reads from stdin and writes to 
+    stdout. Each line of stdin should contain a numeric value, either 
+    integer or floating point.
+
+    If the number is an integer, simply print that integer back to stdout. 
+    If the number is a float, extract the whole number portion to the left of 
+    the decimal, and the fractional portion to the right of the decimal. 
+    Represent the float as the sum of these two components.
+    
+    For example, if stdin contains the following lines:
+      3.0
+      3.1415
+      42
+      33.333333
+      7
+      0.0
+      123.456
+    Then the corresponding output would be:
+      3 + 0.0 = 3.0
+      3 + 0.1415 = 3.1415
+      42
+      33 + 0.333333 = 33.333333
+      7
+      0 + 0.0 = 0.0
+      123 + 0.456 = 123.456
+
+#################################################
+      
+Submission)
+
+    Submit your three shell programs (lab3_prog1, lab3_prog2, lab3_prog3)
+    using the submit-cps393aufkes command:
+    
+       submit-cps393aufkes lab3_prog1.sh
+       submit-cps393aufkes lab3_prog2.sh
+       submit-cps393aufkes lab3_prog3.sh
+    
