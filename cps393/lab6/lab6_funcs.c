@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 void swap (int *x, int *y) {
     int temp = *y;
     *y = *x;
@@ -20,9 +23,20 @@ void min_max (int *arr, int len, int *min, int *max) {
     *min = localmin;
     *max = localmax;
 }
+//for qsort
+int compare_ints(const void *a, const void *b) {
+    int arg1 = *(const int *)a;
+    int arg2 = *(const int *)b;
+    if (arg1 < arg2) return -1;
+    if (arg1 > arg2) return 1;
+    return 0;
+}
 
 void mmm (int *arr, int len, float *mean, int *median, int *mode) {
-    //IS THE ARR SORTED??? MEDIAN DONT WORK HERE IF NOT DO I SORT
+    if (arr == NULL || len <= 0) return;
+    
+    qsort(arr, len, sizeof(*arr), compare_ints);
+
     int sum = *arr;
     int *start = arr;
     int *median1 = arr + (len/2);
