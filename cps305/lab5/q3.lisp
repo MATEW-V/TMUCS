@@ -8,7 +8,7 @@
       (let ((index *free-index*))
         (setf (aref *cell-array* index) (vector data next-index))
         (incf *free-index*)
-        index)))
+        index))) 
 
 (defun make-empty-list ()
   (vector nil 0))
