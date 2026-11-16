@@ -52,7 +52,7 @@ factorization is if you're not familar.
 For example, if the input is 72, you should print out
 the following (in this precise format):
 
-2*2*2*3*3=72
+2*2*2*3*3=72 
 
 Submission)
 
