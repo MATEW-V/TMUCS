@@ -80,12 +80,12 @@ const float RECOVER_STEER = 10;       // steer when the wall is lost
 const float FRONT_STOP_CM = 20;  // front wall closer = left turn
 const float LOST_WALL_CM = 40;   // side sensor farther = wall lost
 const float FOUND_WALL_CM = 35;  // both side sensors closer = wall found
-const int CONFIRM = 3;           // readings in a row to trust an event
+const int CONFIRM = 1;           // readings in a row to trust an event
 
 // turns and corners
 const unsigned long TURN_PAUSE_MS = 100;   // stand still before turning
-const unsigned long LEFT_TURN_MS = 330;    // 90 degrees
-const unsigned long RIGHT_TURN_MS = 350;   // 90 degrees
+const unsigned long LEFT_TURN_MS = 450;    // 90 degrees
+const unsigned long RIGHT_TURN_MS = 550;   // 90 degrees
 const unsigned long CLEAR_MS = 250;        // drive on after back sensor loses wall to clear corner
 const unsigned long FIND_SETTLE_MS = 3000;  // drive straight while filters refill
 const int REACQUIRE_ARC = 10;              // bend right while searching
