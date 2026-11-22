@@ -1,0 +1,35 @@
+Instructions)
+
+In this home directory, you will find three .c files:
+
+q1.c
+q2.c
+q3.c
+
+These files each contain a main function, along with one 
+or more function stubs (q2.c contains only main). Your 
+job is to implement each function according to the question 
+description found in a comment at the top of each c file.
+
+You MUST also place your name and ID in the NAME_AND_ID.txt
+file in this directory. Failure to do this may result in your
+midterm not being marked. Do this immediately before you 
+start working on the questions
+
+The main function in q1 and q3 contain a handful of 
+tests for each function that you must write. You can
+compile the source file and run it to view the results 
+of the tests.
+
+q2.c does not contain any tests. Compile it, run it with 
+some command line arguments (e.g. ./a.out 12 7 30), and 
+then check the contents of the output file it creates.
+
+At the top of each c file, you must also fill in your
+name and CSID.
+
+Don't forget that you can use "man 3 <function>" to 
+look up documentation for any C function.
+
+You also have access to the gnu C manual:
+https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html

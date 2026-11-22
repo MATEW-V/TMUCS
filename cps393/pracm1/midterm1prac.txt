@@ -1,0 +1,102 @@
+Instructions)
+
+You will write three Bash programs in this test. At the top 
+of each Bash program, include the following comment, with 
+your information filled in:
+
+# NAME: <your name>
+# CSID: <the ID you use to ssh into moon>
+
+You MUST also place your name and ID in the NAME_AND_ID.txt
+file in this directory (not here for the practice test). 
+Failure to do this may result in your midterm not being 
+marked. Do this immediately before you start working on the 
+questions below.
+
+Do NOT ssh into moon. This test is completed locally, in the 
+home directory on this computer. Open the home folder (link 
+on desktop), right-click in the explorer window, and select 
+"Open in terminal". When you use the ls command from here, 
+you should see these instructions and the NAME_AND_ID file.
+
+As long as you meet the problem requirements, how you solve 
+the problems below is up to you. Use any commands you find 
+helpful, whether we covered them in class or not. 
+
+You may access the man pages in a terminal, or the following
+documentation in a browser:
+
+https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+
+########## Q0) 
+
+Start by creating three directories, q1, q2, and q3 in the 
+home directory on your test computer. Do this by opening a 
+terminal and typing - mkdir q1 q2 q3
+In these directories, you will create the programs for the 
+three questions described below.
+
+Feel free to create as many additional files as you want to 
+test your programs. You may leave these helper files when you
+finish, no need to delete them.
+
+########## Q1: 3 marks)
+
+Write a Bash program in folder q1/ called "q1_max_line" 
+that takes a file name as a command-line argument and prints 
+the line in the file containing the largest number of words.
+Additionally, print the number of words on that line.
+
+Print the result to stdout as follows (inlcude quotes around
+line contents):
+
+"<line>" has <xx> words
+
+Your program may assume the file exists and is readable. You
+should create your own file to test your program.
+
+########## Q2: 3 marks)
+
+Write a Bash program in folder q2/ called "q2_char_compressor" 
+that accepts a file name as input. 
+
+You should test that the file exists, and that it is readable.
+If the file does not exist, or is not readable, you should 
+exit with a code of 1. No need to print an error message.
+
+From here, the program will print the contents of the file to
+stdout, with all sequences of repeating characters replaced by 
+a single instance of that character. For example, if the file 
+contains the following line:
+
+Hello howwwww arrrrre yooouuu??
+
+Your program should print the following to stdout:
+
+Helo how are you?
+
+You should create your own file to test your program.
+
+########## Q3: 4 marks)
+
+Write a Bash program in folder q3/ called "q3_file_indexer" 
+that accepts two arguments:
+
+$1 - One of C, W, or L. The argument corresponds to 
+     characters, words, or lines.
+$2 - A file name. You may assume the file exists, and is
+     readable.
+
+Your program should create a copy of the file. The name
+of the file should be appended to include the count
+specified by the first argument. The file extension, if
+it exists, should be unmodified.	
+
+For example, if your script is run as follows:
+
+./q3_file_indexer W file1.txt
+
+...and file1.txt contains 42 words, then the copy 
+should be created as:
+
+file1_42W.txt

@@ -1,0 +1,63 @@
+CPS393 Lab7 -- Data Structures
+
+###########################################################
+
+Preamble)
+
+This lab is very open ended. Implementation details are 
+completely up to you. Do what you think makes the most
+sense. Complete the functionality below in a single file
+called lab7_list.c
+
+Description)
+
+You will implement a doubly-linked list of simple integers.
+Each node in the list will be a struct containing three 
+fields - The integer value itself, and pointers to the next 
+and previous nodes.
+
+This list will also be a circular buffer. This means that 
+the "next" pointer in the last node points back to the first,
+and the "prev" pointer in the first node points back to the
+last.
+
+Keep in mind that the circular buffer will not have a NULL
+pointer to terminate it. You will have to come up with a 
+solution for keeping track of this... 
+
+Implement the following behaviors over the list:
+
+add) 
+
+This function accepts the list as an argument, as well as
+an integer value to be added. It should insert a new node at 
+the current location of the pointer. This function should
+return a pointer to the next node in the list, after adding.
+
+remove)
+
+The remove function accepts the list as an argument, and an
+integer value. This function should search the list for a 
+node whose value matches the argument. Remove ALL such nodes
+from the list, and return the number of nodes that were 
+removed. If the value cannot be found, return 0, since no
+nodes were removed.
+
+print)
+
+This function accepts the list as input, and prints the 
+integer values of every node in the list. The print order
+does not matter.
+
+main)
+
+In your main function you should create a new list, add
+a few nodes, print the list, remove a few nodes, print the 
+list, and generally demonstrate the correct behavior of 
+the functions above.
+
+Submission)
+
+Submit your source file using the submit command:
+
+    submit-cps393aufkes lab7_funcs.c
