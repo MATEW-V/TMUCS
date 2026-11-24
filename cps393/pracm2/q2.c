@@ -3,8 +3,8 @@
 
 
 /*
-    NAME: 
-    CSID: 
+    NAME: Matthew Vuong 
+    CSID: mevuong
 
     Q2: 4 marks)
 
@@ -43,9 +43,30 @@
 
 int main(int argc, char *argv[])
 {
-    // Your code here
+    FILE *out;
+    out = fopen("laps.txt", "w");
 
+    if (argc < 2) {
+        fprintf(out, "No laps\n");
+        fclose(out);
+        return 0;
+    }
 
+    double *data = malloc((argc-1) * sizeof(double));
+    double min = atof(argv[1]);
 
+    for (int i = 0; i<(argc-1); i++) {
+        data[i] = atof(argv[i+1]);
+        if (min > data[i]) min = data[i];
+    }
+
+    for (int i = 0; i<(argc-1); i++) {
+        fprintf(out, "Lap %d: +%.2f\n", (i+1), (data[i]-min));
+    }
+
+    fprintf(out, "Fastest: %.2f\n", min);
+    fclose(out);
+
+    free(data);
     return 0;
 }

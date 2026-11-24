@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 /*
-    NAME: 
-    CSID: 
+    NAME: Matthew Vuong
+    CSID: mevuong
 
     Q1: 3 marks)
 
@@ -29,9 +29,29 @@
 
 void print_primes (int lo, int hi)
 {
-    // Your code here
+    int count = 0;
+    if (lo > hi) {
+        printf("%s\n","invalid");
+        return;
+    }
 
+    for (int k = lo; k <= hi; k++) {
+        if (k < 2) continue;
+        int is_prime = 1;
 
+        for (int i = 2; i*i <= k; i++) {
+            if (k % i == 0) {
+                is_prime = 0;
+                break;
+            }
+        }
+
+        if (is_prime) {
+            printf("%d ", k);
+            count++;
+        }
+    }
+    printf("(%d primes)\n", count);
 }
 
 int main()

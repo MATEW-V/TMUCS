@@ -3,8 +3,8 @@
 #include <string.h> 
 
 /*
-    NAME: 
-    CSID: 
+    NAME: Matthew Vuong
+    CSID: mevuong
 
     Q3: 3 marks)
 
