@@ -30,9 +30,20 @@
 
 int palindrome (const char *str_in, int *mismatch_out)
 {
+    int len = strlen(str_in);
 
-
-    return -1; // change this, obviously.        
+    for (int i = 0; i < len/2; i++) {
+        if (str_in[i] != str_in[len-i-1]) {
+            if (mismatch_out != NULL) {
+                *mismatch_out = i;
+            }
+            return 0;
+        }
+    }
+    if (mismatch_out != NULL) {
+        *mismatch_out = -1;
+    }
+    return 1;
 }
 
 int main()
