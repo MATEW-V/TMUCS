@@ -1,0 +1,3 @@
+alice 88
+carol 75
+dan 92

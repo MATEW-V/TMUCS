@@ -12,13 +12,25 @@ void print_array(int *arr, int len){
 
 }
 
-
 // Define the remove_from_array function here!
+int* remove_from_array(int *arr, int len, int x, int *y) {
+	*y = len;
 
-
-
-
-
+	for (int i = 0; i < len; i++) {
+		if (arr[i]==x) {
+			*y -= 1;
+		}
+	}
+	int *res = malloc(*y * sizeof(int));
+	int pos=0;
+	for (int i = 0; i < len; i++) {
+		if (arr[i]!=x) {
+			res[pos] = arr[i];
+			pos++;
+		}
+	}
+	return res;
+}
 
 
 int main(void){
